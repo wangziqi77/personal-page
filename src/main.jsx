@@ -1,0 +1,15 @@
+if ('scrollRestoration' in history) history.scrollRestoration = 'manual'
+
+import { StrictMode } from 'react'
+import { createRoot } from 'react-dom/client'
+import './index.css'
+import App from './App.jsx'
+import { LangProvider } from './hooks/useLang.jsx'
+
+createRoot(document.getElementById('root')).render(
+  <StrictMode>
+    <LangProvider>
+      <App />
+    </LangProvider>
+  </StrictMode>,
+)

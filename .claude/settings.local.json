@@ -1,0 +1,36 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm install *)",
+      "Bash(npx tailwindcss *)",
+      "Bash(npm run *)",
+      "Bash(sips -s format jpeg \"/Users/wang/Documents/MyCodingProjects/PersonalPage/public/multiagents/IMG_1629.HEIC\" --out \"/tmp/img_1629.jpg\")",
+      "Bash(sips -s format jpeg \"/Users/wang/Documents/MyCodingProjects/PersonalPage/public/multiagents/IMG_1634.HEIC\" --out \"/tmp/img_1634.jpg\")",
+      "Bash(sips -s format jpeg \"/Users/wang/Documents/MyCodingProjects/PersonalPage/public/multiagents/IMG_1639.HEIC\" --out \"/tmp/img_1639.jpg\")",
+      "Bash(sips -s format jpeg \"/Users/wang/Documents/MyCodingProjects/PersonalPage/public/multiagents/IMG_1644.HEIC\" --out \"/tmp/img_1644.jpg\")",
+      "Bash(sips -s format jpeg \"/Users/wang/Documents/MyCodingProjects/PersonalPage/public/multiagents/IMG_1649.HEIC\" --out \"/tmp/img_1649.jpg\")",
+      "Bash(sips -s format jpeg \"/Users/wang/Documents/MyCodingProjects/PersonalPage/public/multiagents/IMG_1655.HEIC\" --out \"/tmp/img_1655.jpg\")",
+      "Bash(sips -s format jpeg \"/Users/wang/Documents/MyCodingProjects/PersonalPage/public/multiagents/IMG_1660.HEIC\" --out \"/tmp/img_1660.jpg\")",
+      "Bash(sips -s format jpeg /Users/wang/Documents/MyCodingProjects/PersonalPage/public/multiagents/IMG_1619.HEIC --out /tmp/ma_1619.jpg)",
+      "Bash(sips -s format jpeg /Users/wang/Documents/MyCodingProjects/PersonalPage/public/multiagents/IMG_1620.HEIC --out /tmp/ma_1620.jpg)",
+      "Bash(sips -s format jpeg /Users/wang/Documents/MyCodingProjects/PersonalPage/public/multiagents/IMG_1621.HEIC --out /tmp/ma_1621.jpg)",
+      "Bash(sips -s format jpeg /Users/wang/Documents/MyCodingProjects/PersonalPage/public/multiagents/IMG_1622.HEIC --out /tmp/ma_1622.jpg)",
+      "Bash(sips -s format jpeg /Users/wang/Documents/MyCodingProjects/PersonalPage/public/multiagents/IMG_1623.HEIC --out /tmp/ma_1623.jpg)",
+      "Bash(sips -s format jpeg /Users/wang/Documents/MyCodingProjects/PersonalPage/public/multiagents/IMG_1629.HEIC --out /tmp/ma_1629.jpg)",
+      "Bash(sips -s format jpeg /Users/wang/Documents/MyCodingProjects/PersonalPage/public/multiagents/IMG_1630.HEIC --out /tmp/ma_1630.jpg)",
+      "Bash(sips -s format jpeg /Users/wang/Documents/MyCodingProjects/PersonalPage/public/multiagents/IMG_1631.HEIC --out /tmp/ma_1631.jpg)",
+      "Bash(sips -s format jpeg /Users/wang/Documents/MyCodingProjects/PersonalPage/public/multiagents/IMG_1632.HEIC --out /tmp/ma_1632.jpg)",
+      "Bash(sips -s format jpeg /Users/wang/Documents/MyCodingProjects/PersonalPage/public/multiagents/IMG_1633.HEIC --out /tmp/ma_1633.jpg)",
+      "Bash(sips -s format jpeg /Users/wang/Documents/MyCodingProjects/PersonalPage/public/multiagents/IMG_1637.HEIC --out /tmp/ma_1637.jpg)",
+      "Bash(sips -s format jpeg /Users/wang/Documents/MyCodingProjects/PersonalPage/public/multiagents/IMG_1638.HEIC --out /tmp/ma_1638.jpg)",
+      "Bash(sips -s format jpeg /Users/wang/Documents/MyCodingProjects/PersonalPage/public/multiagents/IMG_1639.HEIC --out /tmp/ma_1639.jpg)",
+      "Bash(sips -s format jpeg /Users/wang/Documents/MyCodingProjects/PersonalPage/public/multiagents/IMG_1640.HEIC --out /tmp/ma_1640.jpg)",
+      "Bash(sips -s format jpeg /Users/wang/Documents/MyCodingProjects/PersonalPage/public/multiagents/IMG_1641.HEIC --out /tmp/ma_1641.jpg)",
+      "Bash(sips -s format jpeg /Users/wang/Documents/MyCodingProjects/PersonalPage/public/multiagents/IMG_1645.HEIC --out /tmp/ma_1645.jpg)",
+      "Bash(sips -s format jpeg /Users/wang/Documents/MyCodingProjects/PersonalPage/public/multiagents/IMG_1646.HEIC --out /tmp/ma_1646.jpg)",
+      "Bash(sips -s format jpeg /Users/wang/Documents/MyCodingProjects/PersonalPage/public/multiagents/IMG_1647.HEIC --out /tmp/ma_1647.jpg)",
+      "Bash(sips -s format jpeg /Users/wang/Documents/MyCodingProjects/PersonalPage/public/multiagents/IMG_1648.HEIC --out /tmp/ma_1648.jpg)",
+      "Bash(sips -s format jpeg /Users/wang/Documents/MyCodingProjects/PersonalPage/public/multiagents/IMG_1649.HEIC --out /tmp/ma_1649.jpg)"
+    ]
+  }
+}

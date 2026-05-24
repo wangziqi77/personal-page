@@ -1,0 +1,56 @@
+{
+  "nav": {
+    "experience": "经历",
+    "projects": "项目",
+    "explore": "关于我"
+  },
+  "hero": {
+    "greeting": "你好，我是",
+    "name": "王同学",
+    "tagline": "产品经理 · AI 应用探索者 · 中医数字化实践者",
+    "cta": "了解更多"
+  },
+  "experience": {
+    "title": "我的经历",
+    "subtitle": "从校园到行业的成长轨迹"
+  },
+  "projects": {
+    "title": "项目作品",
+    "subtitle": "将创意转化为真实产品",
+    "viewDetail": "查看详情",
+    "back": "返回项目列表",
+    "techStack": "技术栈 / 方法论",
+    "myRole": "我的角色",
+    "outcome": "核心成果"
+  },
+  "explore": {
+    "title": "关于我",
+    "subtitle": "多维度的我",
+    "strengths": {
+      "title": "个人优势",
+      "items": [
+        { "title": "跨领域整合", "desc": "探索 AI+ 不同领域，推动数字化创新" },
+        { "title": "产品思维", "desc": "以用户为中心，从需求洞察到方案落地" },
+        { "title": "快速学习", "desc": "持续探索新技术与新领域，保持认知迭代" },
+        { "title": "创意执行", "desc": "将创意想法转化为可行方案并推动实现" }
+      ]
+    },
+    "hobbies": {
+      "title": "兴趣爱好",
+      "items": [
+        { "name": "篮球", "desc": "球场是我释放压力的地方，team play 让我享受协作的快感" },
+        { "name": "健身", "desc": "坚持训练，塑造自律的生活方式" },
+        { "name": "滑雪", "desc": "喜欢在雪坡上感受速度与控制的平衡" },
+        { "name": "电吉他", "desc": "摇滚是我内心的另一面，弦上有无限表达" },
+        { "name": "摄影", "desc": "用镜头记录旅途与日常中那些值得定格的瞬间" }
+      ]
+    },
+    "map": {
+      "title": "环游世界足迹",
+      "subtitle": "走过的土地，留下的故事",
+      "visited": "已到访",
+      "countries": "个国家/地区",
+      "hover": "悬停在已标记国家查看故事"
+    }
+  }
+}

@@ -1,0 +1,56 @@
+{
+  "nav": {
+    "experience": "Experience",
+    "projects": "Projects",
+    "explore": "Explore Me"
+  },
+  "hero": {
+    "greeting": "Hi, I'm",
+    "name": "Wang",
+    "tagline": "Product Manager · AI Explorer · TCM Digital Innovator",
+    "cta": "Learn More"
+  },
+  "experience": {
+    "title": "Experience",
+    "subtitle": "My journey from campus to industry"
+  },
+  "projects": {
+    "title": "Projects",
+    "subtitle": "Turning ideas into real products",
+    "viewDetail": "View Details",
+    "back": "Back to Projects",
+    "techStack": "Tech Stack / Methodology",
+    "myRole": "My Role",
+    "outcome": "Key Outcomes"
+  },
+  "explore": {
+    "title": "Explore Me",
+    "subtitle": "A multidimensional portrait",
+    "strengths": {
+      "title": "Personal Strengths",
+      "items": [
+        { "title": "Cross-domain Integration", "desc": "Bridging AI technology with traditional Chinese medicine to drive digital innovation" },
+        { "title": "Product Thinking", "desc": "User-centered approach from insight discovery to product delivery" },
+        { "title": "Fast Learning", "desc": "Continuously exploring new technologies and domains, always iterating" },
+        { "title": "Creative Execution", "desc": "Transforming creative ideas into actionable solutions and driving them to completion" }
+      ]
+    },
+    "hobbies": {
+      "title": "Hobbies",
+      "items": [
+        { "name": "Basketball", "desc": "The court is where I decompress — team play brings out the best in collaboration" },
+        { "name": "Fitness", "desc": "Consistent training builds the discipline that carries into every area of life" },
+        { "name": "Skiing", "desc": "Finding balance between speed and control on the slopes" },
+        { "name": "Electric Guitar", "desc": "Rock is my other self — infinite expression in every riff" },
+        { "name": "Photography", "desc": "Capturing moments worth freezing — from travels to daily life" }
+      ]
+    },
+    "map": {
+      "title": "World Footprint",
+      "subtitle": "Lands traveled, stories collected",
+      "visited": "Visited",
+      "countries": "Countries & Regions",
+      "hover": "Hover over a colored country to see the story"
+    }
+  }
+}

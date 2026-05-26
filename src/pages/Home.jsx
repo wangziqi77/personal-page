@@ -111,12 +111,20 @@ function AboutSection({ t, lang }) {
 
         {/* Right: profile photo */}
         <FadeIn delay={200} className="hidden md:block flex-shrink-0">
-          <img
-            src={`${base}images/ProfilePhoto.jpg`}
-            alt=""
-            className="rounded-2xl object-cover object-top shadow-md"
-            style={{ width: 338, height: 442 }}
-          />
+          <div className="relative" style={{ width: 338, height: 442 }}>
+            <img
+              src={`${base}images/77.png`}
+              alt=""
+              className="absolute pointer-events-none"
+              style={{ width: 220, top: -70, right: -40, zIndex: 0 }}
+            />
+            <img
+              src={`${base}images/ProfilePhoto.jpg`}
+              alt=""
+              className="absolute inset-0 rounded-2xl object-cover object-top shadow-md"
+              style={{ width: 338, height: 442, zIndex: 1 }}
+            />
+          </div>
         </FadeIn>
 
       </div>
@@ -259,6 +267,11 @@ function ProjectCard({ p, isZh, t }) {
             <Link to={`/projects/${p.id}`} className={btnCls}>
               {isZh ? '查看项目 →' : 'View Project →'}
             </Link>
+            {p.prdPath && (
+              <a href={`${base}${p.prdPath}`} target="_blank" rel="noopener noreferrer" className={btnCls}>
+                {isZh ? '查看 PRD ↗' : 'View PRD ↗'}
+              </a>
+            )}
             {p.promoVideo && (
               <a href={p.promoVideo} target="_blank" rel="noopener noreferrer" className={btnCls}>
                 ▶ {isZh ? '观看推广视频' : 'View Promotion Video'}
@@ -346,7 +359,7 @@ function ExploreMeSection({ t, lang }) {
                 {isZh ? '环游世界足迹' : 'World Footprint'}
               </h4>
               <p className="text-navy-400 text-xs">
-                {isZh ? '14 个国家 / 地区的故事' : '14 countries & territories'}
+                {isZh ? '17 个国家 / 地区的故事' : '17 countries & territories'}
               </p>
             </div>
             <span className="text-navy-400/40 group-hover:text-navy-600 group-hover:translate-x-1 transition-all duration-200">→</span>

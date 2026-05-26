@@ -11,7 +11,7 @@ export default function App() {
     const base = import.meta.env.BASE_URL
     const style = document.createElement('style')
     style.id = 'custom-cursor'
-    style.textContent = `* { cursor: url('${base}images/cursor_small.GIF') 29 34, auto !important; }`
+    style.textContent = `* { cursor: url('${base}images/newcursorGIF_small.GIF') 0 0, auto !important; }`
     document.head.appendChild(style)
     return () => document.getElementById('custom-cursor')?.remove()
   }, [])

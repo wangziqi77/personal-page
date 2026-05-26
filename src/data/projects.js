@@ -71,7 +71,7 @@ export const projects = [
     stackEn: ['Doubao-1.5-vision-pro-32k', 'DeepSeek-V3', 'ES 8 Hybrid Search', 'RRF Reranking', 'text-embedding-miffy-002', 'MySQL', 'RAG', 'Prompt Engineering', 'LLM-as-Judge', 'React + Vite'],
     iconImage: 'images/AI%20TCM/icon.PNG',
     reportImage: 'images/AI%20TCM/Report.jpg',
-    diagramPath: 'diagrams/aitcm-architecture.html',
+    diagramPath: 'diagrams/aitcm-architecture.svg',
     images: [],
   },
   {
@@ -86,6 +86,7 @@ export const projects = [
     taglineEn: 'Multimodal TCM diagnosis · Gamified spirit companion · Commerce-integrated closed loop',
     tagsZh: ['多智能体', 'MCP', 'RAG', '多模态', '游戏化', '美团 AI Hackathon'],
     tagsEn: ['Multi-Agent', 'MCP', 'RAG', 'Multimodal', 'Gamification', 'Meituan Hackathon'],
+    prdPath: 'multiagents/prd.html',
     overviewZh: '美团2025 AI Hackathon 最受欢迎项目。针对年轻人"中医养生门槛高、传统工具无情感、缺乏交易闭环"的痛点，构建一套集多模态智能辨证、游戏化魂宠陪伴与商业服务闭环为一体的 AI 智能体系统。用户可通过文字、语音或上传舌面诊图像与 AI 魂宠"逐风鹿"交互，获得个性化中医体质分析、养生建议与美团生态内的健康服务推荐，实现从"聊健康"到"下单"的完整转化链路',
     overviewEn: 'Most Popular Project at Meituan\'s annual AI Hackathon. Built to address three pain points for younger TCM users: high barrier to entry, emotionally flat existing tools, and no commerce integration. The system combines multimodal TCM syndrome differentiation, a gamified spirit-pet companion ("ZhuFengLu"), and a Meituan service recommendation loop — letting users interact via text, voice, or tongue images to receive constitution analysis, lifestyle advice, and health product recommendations in one flow.',
     roleZh: '负责整体系统架构设计与前端工程实现：自主设计并落地分层 Agent 架构，通过意图路由 Hub 将需求精准拆解为并行子任务；设计"图像特征提取—语义参数化—LLM 推理"多模态 Pipeline；通过 Query Rewriting 将口语化输入转化为专业术语，并动态注入长短期记忆分层，辨证准确率达 93%',

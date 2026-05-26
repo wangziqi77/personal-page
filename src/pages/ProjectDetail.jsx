@@ -77,7 +77,17 @@ export default function ProjectDetail() {
 
       {/* ── Overview ────────────────────────────────────────────────────── */}
       <Section color={p.color} title={isZh ? '项目概述' : 'Overview'}>
-        <p className="text-navy-500 leading-relaxed">{isZh ? p.overviewZh : p.overviewEn}</p>
+        <p className="text-navy-500 leading-relaxed mb-4">{isZh ? p.overviewZh : p.overviewEn}</p>
+        {p.prdPath && (
+          <a href={`${base}${p.prdPath}`} target="_blank" rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-medium transition-colors"
+            style={{ backgroundColor: p.color + '50', color: '#2c4660' }}
+            onMouseEnter={e => e.currentTarget.style.backgroundColor = p.color + '80'}
+            onMouseLeave={e => e.currentTarget.style.backgroundColor = p.color + '50'}
+          >
+            📄 {isZh ? '查看完整 PRD ↗' : 'View Full PRD ↗'}
+          </a>
+        )}
       </Section>
 
       {/* ── Slides PDF ──────────────────────────────────────────────────── */}
@@ -93,12 +103,19 @@ export default function ProjectDetail() {
             </a>
           </div>
           <div className="rounded-xl border border-cream-300 overflow-hidden">
-            <iframe
-              src={`${base}${p.slidesPath}`}
+            <object
+              data={`${base}${p.slidesPath}`}
+              type="application/pdf"
               className="w-full"
               style={{ height: '70vh', minHeight: 480 }}
-              title="Project Slides"
-            />
+            >
+              <embed
+                src={`${base}${p.slidesPath}`}
+                type="application/pdf"
+                className="w-full"
+                style={{ height: '70vh', minHeight: 480 }}
+              />
+            </object>
           </div>
           {p.promoVideo && (
             <a href={p.promoVideo} target="_blank" rel="noopener noreferrer"
@@ -332,76 +349,22 @@ function LinearArchitectureSection({ p, isZh, base }) {
   )
 }
 
-// ── Inline diagram viewer (no iframe — zoom & pan work natively) ─────────────
+// ── Diagram viewer (SVG/PNG/PDF image embed) ─────────────────────────────────
 function DiagramViewer({ src, isZh }) {
-  const divRef = useRef(null)
-  const [status, setStatus] = useState('loading') // loading | ready | error
-
-  useEffect(() => {
-    let cancelled = false
-
-    fetch(src)
-      .then(r => r.text())
-      .then(html => {
-        if (cancelled) return
-        const doc = new DOMParser().parseFromString(html, 'text/html')
-        const mxDiv = doc.querySelector('[data-mxgraph]')
-        if (!mxDiv || !divRef.current) return
-
-        // Inject the mxgraph data attribute into our container
-        divRef.current.setAttribute('data-mxgraph', mxDiv.getAttribute('data-mxgraph'))
-
-        const init = () => {
-          if (window.GraphViewer) {
-            window.GraphViewer.processElements()
-            setStatus('ready')
-          }
-        }
-
-        if (!document.getElementById('diagrams-viewer-script')) {
-          const script = document.createElement('script')
-          script.id = 'diagrams-viewer-script'
-          script.src = 'https://viewer.diagrams.net/js/viewer-static.min.js'
-          script.onload = init
-          script.onerror = () => setStatus('error')
-          document.head.appendChild(script)
-        } else {
-          init()
-        }
-      })
-      .catch(() => setStatus('error'))
-
-    return () => { cancelled = true }
-  }, [src])
-
   return (
     <div>
       <div className="flex items-center justify-between mb-2">
         <span className="text-navy-400 text-xs">
-          {isZh ? '架构图（滚轮缩放 · 拖拽平移）' : 'Diagram (scroll to zoom · drag to pan)'}
+          {isZh ? '系统架构图' : 'Architecture Diagram'}
         </span>
         <a href={src} target="_blank" rel="noopener noreferrer"
           className="text-navy-400 hover:text-navy-600 text-xs transition-colors">
           {isZh ? '新窗口打开' : 'Open in new tab'} ↗
         </a>
       </div>
-
-      {status === 'loading' && (
-        <div className="h-24 rounded-xl border border-cream-300 flex items-center justify-center text-navy-400 text-sm">
-          {isZh ? '加载中…' : 'Loading…'}
-        </div>
-      )}
-      {status === 'error' && (
-        <div className="h-16 rounded-xl border border-cream-300 flex items-center justify-center text-navy-400 text-sm">
-          {isZh ? '图表加载失败，请通过新窗口查看' : 'Diagram failed to load — use the link above'}
-        </div>
-      )}
-
-      <div
-        ref={divRef}
-        className="mxgraph w-full rounded-xl border border-cream-300 overflow-hidden"
-        style={{ maxWidth: '100%' }}
-      />
+      <div className="rounded-xl border border-cream-300 overflow-hidden p-4">
+        <img src={src} alt="Architecture Diagram" className="w-full h-auto block" />
+      </div>
     </div>
   )
 }

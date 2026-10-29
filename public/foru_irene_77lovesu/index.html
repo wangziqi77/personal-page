@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#f8f5f1" />
+    <meta name="description" content="Seven days of birthday surprises, made with love for Irene." />
+    <meta name="robots" content="noindex, nofollow" />
+    <title>For you, Irene — Seven Days of Celebrating You</title>
+    <link rel="stylesheet" href="./styles.css" />
+    <script src="./script.js" defer></script>
+  </head>
+  <body>
+    <div class="opening" aria-hidden="true">
+      <div class="opening__left"></div>
+      <div class="opening__right"></div>
+      <div class="opening__glint">✦</div>
+    </div>
+
+    <div class="page-glow page-glow--one" aria-hidden="true"></div>
+    <div class="page-glow page-glow--two" aria-hidden="true"></div>
+    <div class="page-glow page-glow--three" aria-hidden="true"></div>
+
+    <main class="page-shell">
+      <div class="eyebrow"><span class="eyebrow__sparkle">✦</span> OCT 30 — NOV 05, 2026 <span class="eyebrow__sparkle">✦</span></div>
+
+      <section class="calendar" aria-labelledby="page-title">
+        <div class="calendar__orbit" aria-hidden="true"></div>
+
+        <div class="calendar__center">
+          <span class="handwritten">a little something, each day</span>
+          <h1 id="page-title">For you, <em>Irene</em></h1>
+          <p class="subtitle">Seven Days of Celebrating You, 我的宝宝</p>
+          <div class="rainbow-rule" aria-hidden="true"></div>
+          <p id="status-text" class="status-text" aria-live="polite"></p>
+        </div>
+
+        <div class="day-ring" aria-label="Seven birthday gifts">
+          <button class="day-card day-card--red" data-day="0" type="button" aria-label="Day 1, October 30">
+            <span class="day-card__top"><span>DAY 01</span><span class="day-card__mark" aria-hidden="true">✦</span></span>
+            <span class="day-card__number">30</span>
+            <span class="day-card__month">OCTOBER</span>
+            <span class="day-card__bottom">A gift for you <span aria-hidden="true">↗</span></span>
+          </button>
+          <button class="day-card day-card--orange" data-day="1" type="button" aria-label="Day 2, October 31">
+            <span class="day-card__top"><span>DAY 02</span><span class="day-card__mark" aria-hidden="true">✦</span></span>
+            <span class="day-card__number">31</span>
+            <span class="day-card__month">OCTOBER</span>
+            <span class="day-card__bottom">Little surprise <span aria-hidden="true">↗</span></span>
+          </button>
+          <button class="day-card day-card--yellow" data-day="2" type="button" aria-label="Day 3, November 1">
+            <span class="day-card__top"><span>DAY 03</span><span class="day-card__mark" aria-hidden="true">✦</span></span>
+            <span class="day-card__number">01</span>
+            <span class="day-card__month">NOVEMBER</span>
+            <span class="day-card__bottom">Little surprise <span aria-hidden="true">↗</span></span>
+          </button>
+          <button class="day-card day-card--green" data-day="3" type="button" aria-label="Day 4, November 2">
+            <span class="day-card__top"><span>DAY 04</span><span class="day-card__mark" aria-hidden="true">✦</span></span>
+            <span class="day-card__number">02</span>
+            <span class="day-card__month">NOVEMBER</span>
+            <span class="day-card__bottom">Little surprise <span aria-hidden="true">↗</span></span>
+          </button>
+          <button class="day-card day-card--cyan" data-day="4" type="button" aria-label="Day 5, November 3">
+            <span class="day-card__top"><span>DAY 05</span><span class="day-card__mark" aria-hidden="true">✦</span></span>
+            <span class="day-card__number">03</span>
+            <span class="day-card__month">NOVEMBER</span>
+            <span class="day-card__bottom">Little surprise <span aria-hidden="true">↗</span></span>
+          </button>
+          <button class="day-card day-card--blue" data-day="5" type="button" aria-label="Day 6, November 4">
+            <span class="day-card__top"><span>DAY 06</span><span class="day-card__mark" aria-hidden="true">✦</span></span>
+            <span class="day-card__number">04</span>
+            <span class="day-card__month">NOVEMBER</span>
+            <span class="day-card__bottom">Little surprise <span aria-hidden="true">↗</span></span>
+          </button>
+          <button class="day-card day-card--violet" data-day="6" type="button" aria-label="Day 7, November 5">
+            <span class="day-card__top"><span>DAY 07</span><span class="day-card__mark" aria-hidden="true">✦</span></span>
+            <span class="day-card__number">05</span>
+            <span class="day-card__month">NOVEMBER</span>
+            <span class="day-card__bottom">Little surprise <span aria-hidden="true">↗</span></span>
+          </button>
+        </div>
+      </section>
+
+      <footer class="page-footer">
+        <span>One day, one little gift.</span>
+        <span>New gifts open at 12:00 AM · Korea time</span>
+      </footer>
+    </main>
+
+    <dialog id="gift-dialog" class="gift-dialog" aria-labelledby="gift-title">
+      <button class="dialog-close" type="button" aria-label="Close gift">×</button>
+      <div class="dialog-heading">
+        <span class="dialog-kicker">DAY 01 · OCTOBER 30</span>
+        <h2 id="gift-title">A bracelet of best wishes</h2>
+        <p>Tap the photo to turn it over.</p>
+      </div>
+      <div id="flip-card" class="flip-card">
+        <div class="flip-card__inner">
+          <button id="flip-to-letter" class="flip-card__face flip-card__front" type="button" aria-label="Turn over the bracelet photo to read the letter">
+            <img src="./assets/bracelet.jpg" alt="A handmade bracelet with purple, silver, wood and white beads" />
+            <span class="photo-caption">Made for you, with love <span aria-hidden="true">↻</span></span>
+          </button>
+          <div class="flip-card__face flip-card__back" aria-hidden="true">
+            <span class="letter-label">A LETTER FOR IRENE</span>
+            <span class="letter-title">To my baby,</span>
+            <div class="letter-body" tabindex="-1">
+              <p>宝宝生日快乐！我想了很久很久要怎么陪宝宝过这第一个生日，但是两千公里的距离，让我不知道如何把我所有的祝福、喜欢与想念传达到你身边。有一天晚上突然灵光一现，既然我不能陪在宝宝身边，那我就成为要成为陪着宝宝最久的^ ^于是就写了这个陪宝宝过七天生日的网页，每一天都能翻开一张新的卡片，就好像我每天都降临到宝宝身边！</p>
+              <p>今天是Day1，宝宝的生日，今天要送给宝宝的是一串我自己从选材到设计到串成的独一无二的手串。记得宝宝和我说戴了两年的手串断掉了，希望这串手串能给宝宝带来新的能量和好运！选了紫龙晶作为主体，一方面是因为宝宝喜欢紫色，一方面是因为紫龙晶适合寄托直觉、勇气和接纳变化的心愿。我知道宝宝最近可能有些烦心事，我希望带给宝宝美好的直觉和面对一切变化和困难的勇气。我一直一直相信宝宝一定能做成你想做的任何事，因为你在我眼里就是这样坚韧有力量的人。</p>
+              <p>明天要送给宝宝什么呢，其实我也有点没想好^ ^</p>
+            </div>
+            <button id="flip-to-photo" class="letter-return" type="button" tabindex="-1">翻回手串照片 ↻</button>
+          </div>
+        </div>
+      </div>
+      <p class="dialog-footnote">The first of seven little surprises</p>
+    </dialog>
+
+    <dialog id="pending-dialog" class="pending-dialog" aria-labelledby="pending-title">
+      <button class="dialog-close" type="button" aria-label="Close message">×</button>
+      <span class="pending-dialog__star" aria-hidden="true">✦</span>
+      <h2 id="pending-title">A surprise is coming</h2>
+      <p>This little gift is still being prepared.</p>
+    </dialog>
+
+    <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  </body>
+</html>

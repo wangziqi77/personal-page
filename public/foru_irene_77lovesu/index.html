@@ -102,17 +102,57 @@
           </button>
           <div class="flip-card__face flip-card__back" aria-hidden="true">
             <span class="letter-label">A LETTER FOR IRENE</span>
-            <span class="letter-title">To my baby,</span>
+            <span class="letter-title">To Irene,</span>
             <div class="letter-body" tabindex="-1">
               <p>宝宝生日快乐！我想了很久很久要怎么陪宝宝过这第一个生日，但是两千公里的距离，让我不知道如何把我所有的祝福、喜欢与想念传达到你身边。有一天晚上突然灵光一现，既然我不能陪在宝宝身边，那我就成为要成为陪着宝宝最久的^ ^于是就写了这个陪宝宝过七天生日的网页，每一天都能翻开一张新的卡片，就好像我每天都降临到宝宝身边！</p>
               <p>今天是Day1，宝宝的生日，今天要送给宝宝的是一串我自己从选材到设计到串成的独一无二的手串。记得宝宝和我说戴了两年的手串断掉了，希望这串手串能给宝宝带来新的能量和好运！选了紫龙晶作为主体，一方面是因为宝宝喜欢紫色，一方面是因为紫龙晶适合寄托直觉、勇气和接纳变化的心愿。我知道宝宝最近可能有些烦心事，我希望带给宝宝美好的直觉和面对一切变化和困难的勇气。我一直一直相信宝宝一定能做成你想做的任何事，因为你在我眼里就是这样坚韧有力量的人。</p>
               <p>明天要送给宝宝什么呢，其实我也有点没想好^ ^</p>
             </div>
-            <button id="flip-to-photo" class="letter-return" type="button" tabindex="-1">翻回手串照片 ↻</button>
+            <button id="flip-to-photo" class="letter-return" type="button" tabindex="-1">Back to the bracelet ↻</button>
           </div>
         </div>
       </div>
       <p class="dialog-footnote">The first of seven little surprises</p>
+    </dialog>
+
+    <dialog id="book-dialog" class="gift-dialog book-dialog" aria-labelledby="book-title">
+      <button class="dialog-close" type="button" aria-label="Close gift">×</button>
+      <div class="dialog-heading">
+        <span class="dialog-kicker">DAY 02 · OCTOBER 31</span>
+        <h2 id="book-title">A story to unwrap</h2>
+        <p>Follow the light and pop a little heart.</p>
+      </div>
+      <div id="book-stage" class="book-stage">
+        <div id="book-flip" class="flip-card book-flip" aria-hidden="true">
+          <div class="flip-card__inner">
+            <button id="book-to-letter" class="flip-card__face flip-card__front book-flip__front" type="button" aria-label="Turn the book over to read the letter" tabindex="-1">
+              <img src="./assets/dinosaur-book.webp" alt="《恐龙的移动轨迹》书籍封面" />
+              <span class="photo-caption">A little story, just for you <span aria-hidden="true">↻</span></span>
+            </button>
+            <div class="flip-card__face flip-card__back book-flip__back" aria-hidden="true">
+              <span class="letter-label">DAY TWO · A LETTER FOR IRENE</span>
+              <span class="letter-title">To Irene,</span>
+              <div class="letter-body" tabindex="-1">
+                <p>今天是宝宝生日的第二天也是万圣节！写下这句话的时候突然后悔没有准备一点万圣的礼物 TT 但是也没关系！今天这个打开礼物的视觉效果也勉强算是万圣主题吧！</p>
+                <p>宝宝之前说回国之后要买一本纸质的《恐龙的移动轨迹》，我就顺手给宝宝买了。一边听着季候风一边读这本书的时候不禁想到宝宝会给自己的纹身取名字吗？如果有的话会是甜椒吗？我觉得可能还是鸡蛋吧！但是鸡蛋还是有点太笨了，叫豆腐可能会更可爱。</p>
+                <p>设计unwrapping过程的时候很自然地就想到了这种呈现方式——我特别喜欢这本书藏在书衣下面粉红泡泡纸的封面，这些泡泡构成了我对这本书的第一印象——它好像要讲一段就像泡泡纸那样轻轻地被戳破了的关系。做的时候想象了一下宝宝点击这些泡泡时的样子，突然想到了一只小三角龙在追着光斑移动，而这是我送给宝宝的移动轨迹。</p>
+                <p>明天要送什么我已经想好了！嘿嘿^ ^</p>
+              </div>
+              <button id="book-to-cover" class="letter-return" type="button" tabindex="-1">Back to the cover ↻</button>
+            </div>
+          </div>
+        </div>
+        <div id="bubble-wrap" class="bubble-wrap" aria-label="Pink heart bubble wrap">
+          <div class="bubble-wrap__shine" aria-hidden="true"></div>
+          <div class="bubble-wrap__light" aria-hidden="true"></div>
+          <div id="bubble-grid" class="bubble-grid"></div>
+        </div>
+      </div>
+      <div class="book-progress">
+        <p id="book-instruction" role="status" aria-live="polite">Follow the light. Pop the bubbles to make a heart ♡</p>
+        <span id="bubble-count">0 / 14</span>
+        <button id="bubble-replay" type="button" hidden>Pop them again ↺</button>
+      </div>
     </dialog>
 
     <dialog id="pending-dialog" class="pending-dialog" aria-labelledby="pending-title">

@@ -46,6 +46,18 @@ const weaveLayers = ['#silk-weave-head', '#silk-weave-body', '#silk-weave-tail']
 const birdInstruction = document.querySelector('#bird-instruction');
 const birdCount = document.querySelector('#bird-count');
 const birdReplay = document.querySelector('#bird-replay');
+const incenseDialog = document.querySelector('#incense-dialog');
+const incenseStage = document.querySelector('#incense-stage');
+const incenseScene = document.querySelector('#incense-scene');
+const incenseReveal = document.querySelector('#incense-reveal');
+const incenseIgnite = document.querySelector('#incense-ignite');
+const incenseNote = document.querySelector('#incense-note');
+const incenseNoteBody = incenseNote.querySelector('.letter-body');
+const incenseNoteScrollHint = document.querySelector('#incense-note-scroll-hint');
+const incenseNoteOpen = document.querySelector('#incense-note-open');
+const incenseNoteClose = document.querySelector('#incense-note-close');
+const incenseInstruction = document.querySelector('#incense-instruction');
+const incenseReplay = document.querySelector('#incense-replay');
 const toast = document.querySelector('#toast');
 const statusText = document.querySelector('#status-text');
 const previewParams = new URLSearchParams(location.search);
@@ -53,6 +65,7 @@ const isLocalPreview = ['localhost', '127.0.0.1'].includes(location.hostname);
 const previewFirstDay = isLocalPreview && previewParams.has('preview');
 const previewSecondDay = isLocalPreview && previewParams.has('preview-day-2');
 const previewThirdDay = isLocalPreview && previewParams.has('preview-day-3');
+const previewFourthDay = isLocalPreview && previewParams.has('preview-day-4');
 const baseHeartPath = [[2,1], [3,0], [4,0], [5,1], [6,2], [7,3], [6,4], [5,5], [4,6], [3,6], [2,5], [2,4], [3,3], [2,2]];
 const bubbleRows = 11;
 const bubbleColumns = 7;
@@ -62,11 +75,12 @@ let revealTimer;
 let birdRevealTimer;
 let birdGlowTimer;
 let birdThreadStep = 0;
+let incenseRevealTimer;
 let toastTimer;
 let serverTimeOffset = 0;
 
 function isPreviewed(index) {
-  return (index === 0 && previewFirstDay) || (index === 1 && previewSecondDay) || (index === 2 && previewThirdDay);
+  return (index === 0 && previewFirstDay) || (index === 1 && previewSecondDay) || (index === 2 && previewThirdDay) || (index === 3 && previewFourthDay);
 }
 
 async function syncClock() {
@@ -104,7 +118,7 @@ function updateCalendar() {
     card.classList.toggle('is-locked', locked);
     card.setAttribute('aria-label', `Day ${index + 1}, ${dates[index]}${locked ? ', locked until midnight Korea time' : ', unlocked'}`);
     card.querySelector('.day-card__mark').textContent = locked ? '' : '✦';
-    card.querySelector('.day-card__bottom').firstChild.textContent = locked ? 'Opens at 12 ' : index === 0 ? 'A gift for you ' : index === 1 ? 'A book for you ' : index === 2 ? 'A bird for you ' : 'Little surprise ';
+    card.querySelector('.day-card__bottom').firstChild.textContent = locked ? 'Opens at 12 ' : index === 0 ? 'A gift for you ' : index === 1 ? 'A book for you ' : index === 2 ? 'A bird for you ' : index === 3 ? 'A moment of calm ' : 'Little surprise ';
   });
 
   const next = unlockTimes.find((time) => time > current);
@@ -327,6 +341,38 @@ function openBird() {
   birdDialog.showModal();
 }
 
+function resetIncense() {
+  clearTimeout(incenseRevealTimer);
+  incenseStage.classList.remove('is-lit', 'is-revealed');
+  incenseScene.setAttribute('aria-hidden', 'false');
+  incenseReveal.setAttribute('aria-hidden', 'true');
+  incenseIgnite.hidden = false;
+  incenseIgnite.disabled = false;
+  incenseNote.hidden = true;
+  incenseNoteOpen.hidden = true;
+  incenseReplay.hidden = true;
+  incenseInstruction.textContent = 'Tap the glowing tip to light the incense.';
+}
+
+function revealIncense() {
+  incenseStage.classList.add('is-revealed');
+  incenseScene.setAttribute('aria-hidden', 'true');
+  incenseReveal.setAttribute('aria-hidden', 'false');
+  incenseIgnite.hidden = true;
+  incenseNoteOpen.hidden = false;
+  incenseReplay.hidden = false;
+  incenseInstruction.textContent = 'Your gift is here. Let the warmth linger a little.';
+  try { if (!previewFourthDay) localStorage.setItem('irene-day-4-revealed', 'true'); } catch {}
+}
+
+function openIncense() {
+  resetIncense();
+  try {
+    if (!previewFourthDay && localStorage.getItem('irene-day-4-revealed') === 'true') revealIncense();
+  } catch {}
+  incenseDialog.showModal();
+}
+
 weaveGlow.addEventListener('click', () => {
   if (weaveGlow.disabled || birdThreadStep >= weaveLayers.length) return;
   weaveGlow.disabled = true;
@@ -365,6 +411,10 @@ cards.forEach((card, index) => {
       openBird();
       card.classList.add('is-opened');
       try { localStorage.setItem('irene-day-3-opened', 'true'); } catch {}
+    } else if (index === 3) {
+      openIncense();
+      card.classList.add('is-opened');
+      try { if (!previewFourthDay) localStorage.setItem('irene-day-4-opened', 'true'); } catch {}
     } else {
       pendingDialog.showModal();
     }
@@ -399,12 +449,38 @@ birdNoteClose.addEventListener('click', () => {
   birdNoteOpen.focus();
 });
 birdDialog.addEventListener('close', () => clearTimeout(birdRevealTimer));
+incenseIgnite.addEventListener('click', () => {
+  if (incenseIgnite.disabled) return;
+  incenseIgnite.disabled = true;
+  incenseIgnite.hidden = true;
+  incenseStage.classList.add('is-lit');
+  incenseInstruction.textContent = 'Watch the smoke carry a wish to you…';
+  incenseRevealTimer = setTimeout(revealIncense, 2800);
+});
+incenseReplay.addEventListener('click', resetIncense);
+function updateIncenseNoteScrollHint() {
+  incenseNoteScrollHint.hidden = incenseNoteBody.scrollHeight - incenseNoteBody.scrollTop - incenseNoteBody.clientHeight < 8;
+}
+incenseNoteBody.addEventListener('scroll', updateIncenseNoteScrollHint);
+incenseNoteOpen.addEventListener('click', () => {
+  incenseNote.hidden = false;
+  incenseReveal.setAttribute('aria-hidden', 'true');
+  incenseNoteBody.scrollTop = 0;
+  requestAnimationFrame(updateIncenseNoteScrollHint);
+  incenseNoteBody.focus();
+});
+incenseNoteClose.addEventListener('click', () => {
+  incenseNote.hidden = true;
+  incenseReveal.setAttribute('aria-hidden', 'false');
+  incenseNoteOpen.focus();
+});
+incenseDialog.addEventListener('close', () => clearTimeout(incenseRevealTimer));
 
 document.querySelectorAll('.dialog-close').forEach((button) => {
   button.addEventListener('click', () => button.closest('dialog').close());
 });
 
-[giftDialog, bookDialog, birdDialog, pendingDialog].forEach((dialog) => {
+[giftDialog, bookDialog, birdDialog, incenseDialog, pendingDialog].forEach((dialog) => {
   dialog.addEventListener('click', (event) => {
     if (event.target === dialog) dialog.close();
   });
@@ -414,6 +490,7 @@ try {
   if (localStorage.getItem('irene-day-1-opened') === 'true') cards[0].classList.add('is-opened');
   if (localStorage.getItem('irene-day-2-opened') === 'true') cards[1].classList.add('is-opened');
   if (localStorage.getItem('irene-day-3-opened') === 'true') cards[2].classList.add('is-opened');
+  if (localStorage.getItem('irene-day-4-opened') === 'true') cards[3].classList.add('is-opened');
 } catch {}
 
 updateCalendar();

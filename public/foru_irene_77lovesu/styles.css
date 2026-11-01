@@ -526,6 +526,91 @@ button.bubble:disabled { cursor: default; }
 @keyframes weave-light-breathe { from { box-shadow: 0 0 16px 4px #fff9eaa0, 0 0 36px 12px #fff8e568; } to { box-shadow: 0 0 25px 7px #fff9eaff, 0 0 58px 23px #fff8e5b5; } }
 @keyframes weave-light-ring { from { transform: scale(.76); opacity: .9; } to { transform: scale(1.34); opacity: .12; } }
 
+.incense-dialog {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  max-width: 100vw;
+  height: 100vh;
+  height: 100dvh;
+  max-height: 100dvh;
+  margin: 0;
+  padding: 18px 16px;
+  overflow: hidden;
+  border: 0;
+  border-radius: 0;
+  background: radial-gradient(circle at 50% 38%, #f3f7ff 0%, #e9f1fc 42%, #d8e5f6 100%);
+  color: #41526b;
+}
+.incense-dialog[open] { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px; }
+.incense-dialog::backdrop { background: #2b3a54b8; backdrop-filter: blur(8px); }
+.incense-dialog .dialog-close { z-index: 8; top: 20px; right: 22px; border-color: #b9c9df; background: #ffffffb8; color: #536780; }
+.incense-dialog__heading { flex: none; text-align: center; }
+.incense-dialog__heading .dialog-kicker { color: #7b92b5; }
+.incense-dialog__heading h2 { margin: 6px 0 3px; color: #40516d; font-family: Georgia, "Times New Roman", serif; font-size: clamp(29px, 3.2vw, 41px); font-weight: 400; letter-spacing: -.045em; }
+.incense-dialog__heading p { margin: 0; color: #7c8fa8; font-family: Georgia, "Times New Roman", serif; font-size: 13px; font-style: italic; }
+.incense-stage {
+  position: relative;
+  flex: none;
+  width: min(780px, calc(100vw - 32px));
+  height: min(560px, calc(100dvh - 196px));
+  min-height: 270px;
+  overflow: hidden;
+  border: 1px solid #d9e5f2;
+  border-radius: 27px;
+  background: radial-gradient(circle at 50% 39%, #fffdfc 0%, #eff5ff 37%, #d4e3f8 100%);
+  box-shadow: 0 25px 70px #5b7ca73b, inset 0 1px #fff;
+}
+.incense-scene, .incense-reveal { position: absolute; inset: 0; }
+.incense-scene { z-index: 2; transition: opacity 1.1s ease, filter 1.1s ease; }
+.incense-scene__moon { position: absolute; top: 11%; left: 18%; width: 80px; height: 80px; border-radius: 50%; background: #fff9ec9c; box-shadow: 0 0 70px 25px #fff6e685; filter: blur(1px); }
+.incense-scene__halo { position: absolute; top: 17%; left: 50%; width: 300px; height: 300px; border-radius: 50%; background: radial-gradient(circle, #ffe9be3b, #fff7e31a 37%, transparent 70%); opacity: 0; transform: translateX(-50%); transition: opacity 1s ease; }
+.incense-stage.is-lit .incense-scene__halo { opacity: 1; }
+.incense-stick { position: absolute; z-index: 2; top: 27%; left: 50%; width: 7px; height: 55%; border-radius: 4px 4px 1px 1px; background: linear-gradient(to right, #172139, #334966 35%, #121a33 75%, #061127); box-shadow: 2px 1px 4px #556b8d73; transform: translateX(-50%); }
+.incense-stick__ember { position: absolute; top: -4px; left: 50%; width: 10px; height: 11px; border-radius: 50% 50% 40% 40%; background: #d28259; opacity: .25; transform: translateX(-50%); transition: opacity .4s ease, box-shadow .4s ease, background .4s ease; }
+.incense-stage.is-lit .incense-stick__ember { background: #ffad54; opacity: 1; box-shadow: 0 0 5px 3px #ffca6a, 0 0 18px 8px #ff8a537d, 0 0 50px 16px #ffc8784a; animation: incense-ember 1.3s ease-in-out infinite alternate; }
+.incense-holder { position: absolute; z-index: 3; top: 81%; left: 50%; width: 68px; height: 15px; border: 1px solid #afc0d1; border-radius: 50%; background: linear-gradient(#f7fbff 8%, #9eb1c6 50%, #59738f 80%, #d9e3ed 95%); box-shadow: 0 6px 5px #435d8057; transform: translateX(-50%); }
+.incense-shadow { position: absolute; bottom: 13%; left: 50%; width: 300px; height: 20px; border-radius: 50%; background: #819fbe40; filter: blur(12px); transform: translateX(-50%); }
+.incense-ignite { position: absolute; z-index: 5; top: 26%; left: 50%; display: grid; place-items: center; width: 76px; height: 76px; padding: 0; border: 1px solid #fff8e9c7; border-radius: 50%; background: radial-gradient(circle, #fffdf7 0%, #fff1c9ba 22%, #fff3d32e 56%, transparent 72%); box-shadow: 0 0 0 6px #fff5e65c, 0 0 34px 14px #fff2d577; color: #dba870; cursor: pointer; transform: translate(-50%, -50%); animation: incense-tip-pulse 1.8s ease-in-out infinite alternate; }
+.incense-ignite__spark { font-size: 27px; text-shadow: 0 0 8px #fff, 0 0 17px #f6b57c; }
+.incense-ignite__label { position: absolute; bottom: 84px; left: 50%; padding: 5px 8px; border: 1px solid #e4d4b5; border-radius: 99px; background: #fffdf5dc; color: #8d8290; font-size: 9px; font-weight: 700; letter-spacing: .15em; white-space: nowrap; transform: translateX(-50%); }
+.incense-ignite:focus-visible { outline: 3px solid #6b8bb3; outline-offset: 7px; }
+.incense-ignite[hidden] { display: none; }
+.incense-smoke { position: absolute; z-index: 4; bottom: 73%; left: 50%; width: 260px; height: 55%; overflow: visible; opacity: 0; transform: translateX(-50%); pointer-events: none; }
+.incense-smoke path { stroke: #e3eaff; stroke-width: 5; stroke-linecap: round; stroke-dasharray: 650; stroke-dashoffset: 650; filter: drop-shadow(0 0 8px #fff); }
+.incense-smoke path:nth-child(2) { stroke-width: 3; stroke: #fff9ee; }
+.incense-smoke path:nth-child(3) { stroke-width: 2; stroke: #aabedb; }
+.incense-stage.is-lit .incense-smoke { opacity: .9; }
+.incense-stage.is-lit .incense-smoke path { animation: incense-smoke-draw 2.6s ease-out forwards, incense-smoke-drift 3s ease-in-out infinite alternate; }
+.incense-stage.is-lit .incense-smoke path:nth-child(2) { animation-delay: .15s; }
+.incense-stage.is-lit .incense-smoke path:nth-child(3) { animation-delay: .35s; }
+.incense-scene__caption { position: absolute; right: 16px; bottom: 6%; left: 16px; color: #8da0b9; font-family: Georgia, "Times New Roman", serif; font-size: 13px; font-style: italic; text-align: center; }
+.incense-reveal { z-index: 1; display: flex; flex-direction: column; align-items: center; padding: 18px 20px 20px; opacity: 0; pointer-events: none; transform: scale(.96); transition: opacity 1.1s ease, transform 1.1s ease; }
+.incense-reveal img { display: block; width: 100%; flex: 1; min-height: 0; object-fit: contain; filter: drop-shadow(0 9px 16px #56749a29); }
+.incense-reveal__caption { flex: none; margin-top: 8px; text-align: center; }
+.incense-reveal__caption span { color: #738bac; font-size: 9px; font-weight: 700; letter-spacing: .2em; }
+.incense-reveal__caption p { margin: 6px 0 0; color: #667e9e; font-family: Georgia, "Times New Roman", serif; font-size: 12px; font-style: italic; }
+.incense-note-link { flex: none; margin-top: 11px; padding: 7px 15px; border: 1px solid #aebfd5; border-radius: 99px; background: #fffdfce6; color: #526d90; cursor: pointer; font-size: 11px; }
+.incense-note-link[hidden] { display: none; }
+.incense-stage.is-revealed .incense-scene { opacity: 0; filter: blur(14px); pointer-events: none; }
+.incense-stage.is-revealed .incense-reveal { opacity: 1; pointer-events: auto; transform: scale(1); }
+.incense-note { position: absolute; z-index: 6; inset: 9% 19%; display: flex; flex-direction: column; padding: 30px 33px 24px; border: 1px solid #dbe5f1; border-radius: 20px; background: linear-gradient(155deg, #fffefa, #eef5ff); box-shadow: 0 17px 45px #57759b3b; animation: bird-note-enter .45s ease both; }
+.incense-note[hidden] { display: none; }
+.incense-note .letter-label { color: #7b93b5; }
+.incense-note .letter-title { color: #425a7a; }
+.incense-note .letter-body { color: #536a88; font-size: 14px; }
+.incense-note__scroll-hint { align-self: center; margin: 7px 0 2px; color: #7890ac; font-family: Georgia, "Times New Roman", serif; font-size: 11px; font-style: italic; }
+.incense-note__scroll-hint[hidden] { display: none; }
+.incense-note .letter-return { border-color: #dce5ef; color: #6b86a7; }
+.incense-controls { display: flex; flex: none; flex-direction: column; align-items: center; gap: 7px; min-height: 45px; color: #6e83a1; font-size: 12px; text-align: center; }
+.incense-controls p { min-height: 15px; margin: 0; font-family: Georgia, "Times New Roman", serif; font-style: italic; }
+.incense-controls button { padding: 6px 14px; border: 1px solid #aebfd5; border-radius: 99px; background: #ffffffa8; color: #597491; cursor: pointer; font-size: 11px; }
+.incense-controls button[hidden] { display: none; }
+@keyframes incense-tip-pulse { from { box-shadow: 0 0 0 5px #fff5e650, 0 0 25px 8px #fff2d566; } to { box-shadow: 0 0 0 11px #fff5e619, 0 0 42px 20px #fff2d5aa; } }
+@keyframes incense-ember { from { box-shadow: 0 0 4px 2px #ffca6a, 0 0 16px 6px #ff8a536d; } to { box-shadow: 0 0 8px 4px #ffda83, 0 0 24px 11px #ff8a53aa; } }
+@keyframes incense-smoke-draw { to { stroke-dashoffset: 0; } }
+@keyframes incense-smoke-drift { from { transform: translateX(-4px); } to { transform: translateX(5px); } }
+
 .pending-dialog { position: relative; width: min(390px, calc(100vw - 28px)); padding: 54px 34px 36px; text-align: center; }
 .pending-dialog__star { color: #c2a4bf; font-size: 29px; }
 .pending-dialog h2 { margin: 13px 0 8px; font-family: Georgia, "Times New Roman", serif; font-size: 30px; font-weight: 400; }
@@ -580,6 +665,14 @@ button.bubble:disabled { cursor: default; }
   .bird-weave__drawing { width: min(330px, 78%); }
   .bird-note { right: 6%; left: 6%; padding: 22px 20px 17px; }
   .bird-controls { gap: 7px; }
+  .incense-dialog { padding: 12px; }
+  .incense-dialog[open] { gap: 8px; }
+  .incense-dialog__heading h2 { font-size: 29px; }
+  .incense-dialog__heading p { font-size: 12px; }
+  .incense-stage { width: calc(100vw - 24px); height: min(530px, calc(100dvh - 192px)); border-radius: 22px; }
+  .incense-note { right: 6%; left: 6%; padding: 22px 20px 17px; }
+  .incense-reveal { padding: 15px 10px 17px; }
+  .incense-scene__moon { left: 13%; width: 60px; height: 60px; }
 }
 
 @media (max-width: 390px) {
@@ -606,6 +699,12 @@ button.bubble:disabled { cursor: default; }
   .bird-controls { min-height: 64px; gap: 4px; }
   .weave-glow { width: 67px; height: 67px; }
   .weave-glow__hint { top: 60px; }
+  .incense-dialog { padding: 8px; }
+  .incense-dialog[open] { gap: 5px; }
+  .incense-dialog__heading h2 { margin: 2px 0; font-size: 24px; }
+  .incense-dialog__heading p { font-size: 11px; }
+  .incense-stage { height: calc(100dvh - 155px); min-height: 0; }
+  .incense-controls { min-height: 35px; gap: 4px; }
 }
 
 @media (prefers-reduced-motion: reduce) {

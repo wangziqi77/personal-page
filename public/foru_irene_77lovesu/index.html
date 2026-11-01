@@ -7,8 +7,8 @@
     <meta name="description" content="Seven days of birthday surprises, made with love for Irene." />
     <meta name="robots" content="noindex, nofollow" />
     <title>For you, Irene — Seven Days of Celebrating You</title>
-    <link rel="stylesheet" href="./styles.css?v=day3-letter3" />
-    <script src="./script.js?v=day3-letter3" defer></script>
+    <link rel="stylesheet" href="./styles.css?v=day4-incense3" />
+    <script src="./script.js?v=day4-incense3" defer></script>
   </head>
   <body>
     <div class="opening" aria-hidden="true">
@@ -58,7 +58,7 @@
             <span class="day-card__top"><span>DAY 04</span><span class="day-card__mark" aria-hidden="true">✦</span></span>
             <span class="day-card__number">02</span>
             <span class="day-card__month">NOVEMBER</span>
-            <span class="day-card__bottom">Little surprise <span aria-hidden="true">↗</span></span>
+            <span class="day-card__bottom">A moment of calm <span aria-hidden="true">↗</span></span>
           </button>
           <button class="day-card day-card--cyan" data-day="4" type="button" aria-label="Day 5, November 3">
             <span class="day-card__top"><span>DAY 05</span><span class="day-card__mark" aria-hidden="true">✦</span></span>
@@ -209,6 +209,54 @@
         <p id="bird-instruction" role="status" aria-live="polite">Tap the glowing light inside the picture.</p>
         <span id="bird-count">0 / 3 silks woven</span>
         <button id="bird-replay" type="button" hidden>Weave again ↺</button>
+      </div>
+    </dialog>
+
+    <dialog id="incense-dialog" class="incense-dialog" aria-labelledby="incense-title">
+      <button class="dialog-close" type="button" aria-label="Close gift">×</button>
+      <div class="incense-dialog__heading">
+        <span class="dialog-kicker">DAY 04 · NOVEMBER 2</span>
+        <h2 id="incense-title">A moment of calm</h2>
+        <p>Light this little incense for us.</p>
+      </div>
+      <div id="incense-stage" class="incense-stage">
+        <div id="incense-scene" class="incense-scene">
+          <span class="incense-scene__moon" aria-hidden="true"></span>
+          <span class="incense-scene__halo" aria-hidden="true"></span>
+          <svg class="incense-smoke" viewBox="0 0 300 300" fill="none" aria-hidden="true">
+            <path d="M150 299 C130 266 169 250 150 222 S121 187 148 154 S171 125 145 92 S130 58 158 18" />
+            <path d="M153 295 C173 264 139 247 158 216 S182 180 156 150 S136 113 164 81 S176 45 154 5" />
+            <path d="M148 288 C116 251 154 229 132 202 S110 164 137 135 S151 103 127 75" />
+          </svg>
+          <span class="incense-stick" aria-hidden="true"><span class="incense-stick__ember"></span></span>
+          <span class="incense-holder" aria-hidden="true"></span>
+          <span class="incense-shadow" aria-hidden="true"></span>
+          <button id="incense-ignite" class="incense-ignite" type="button" aria-label="Tap the glowing tip to light the incense">
+            <span class="incense-ignite__spark" aria-hidden="true">✦</span>
+            <span class="incense-ignite__label" aria-hidden="true">TAP TO LIGHT</span>
+          </button>
+          <span class="incense-scene__caption">A tiny flame, a wish carried softly to you.</span>
+        </div>
+        <div id="incense-reveal" class="incense-reveal" aria-hidden="true">
+          <img src="./assets/snow-incense.jpg" alt="Snow themed incense gift: a white box decorated with blue snowflakes, beside a single incense stick" />
+          <div class="incense-reveal__caption"><span>SNOW · A SCENT FOR YOU</span><p>May this little warmth find its way to you.</p></div>
+          <button id="incense-note-open" class="incense-note-link" type="button" hidden>A note for Irene <span aria-hidden="true">↗</span></button>
+        </div>
+        <div id="incense-note" class="incense-note" hidden>
+          <span class="letter-label">DAY FOUR · A NOTE FOR IRENE</span>
+          <span class="letter-title">To Irene,</span>
+          <div class="letter-body" tabindex="-1">
+            <p>今天的礼物是蓝色的，77登场了哼哼！宝宝送给我的线香我一直摆在桌子上，陪我从上海到深圳，每次看到都暖暖的！</p>
+            <p>看到这个线香的时候我就想到下一次见面一定是冬天了吧，不知道首尔下雪了没有呢。我们在小房间里点燃一支线香，感受像落下的雪一样柔和的香味；我们躺在柔软的地毯上依偎在一起，落地灯依旧是令人宽慰的暖黄色。虽然没办法立刻见面，但是下一次见面的期盼胜过了一切。</p>
+            <p>写下这些文字的时候正在听陈粒的《睡吧》，希望宝宝今天能睡个好觉 zZ</p>
+          </div>
+          <span id="incense-note-scroll-hint" class="incense-note__scroll-hint" hidden>Scroll to continue ↓</span>
+          <button id="incense-note-close" class="letter-return" type="button">Back to the gift ↻</button>
+        </div>
+      </div>
+      <div class="incense-controls">
+        <p id="incense-instruction" role="status" aria-live="polite">Tap the glowing tip to light the incense.</p>
+        <button id="incense-replay" type="button" hidden>Light it again ↺</button>
       </div>
     </dialog>
 

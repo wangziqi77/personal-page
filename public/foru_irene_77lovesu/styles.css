@@ -435,6 +435,97 @@ button.bubble:disabled { cursor: default; }
 .book-progress span { font-family: Georgia, "Times New Roman", serif; white-space: nowrap; }
 .book-progress button { padding: 5px 10px; border: 1px solid #eeafce99; border-radius: 99px; background: #ffffff13; color: #ffe5ef; cursor: pointer; font-size: 11px; white-space: nowrap; }
 
+.bird-dialog {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  max-width: 100vw;
+  height: 100vh;
+  height: 100dvh;
+  max-height: 100dvh;
+  margin: 0;
+  padding: 18px 16px;
+  overflow: hidden;
+  border: 0;
+  border-radius: 0;
+  background: radial-gradient(circle at 50% 46%, #faf5ff 0%, #eee2f7 54%, #e3d8ef 100%);
+  color: #514760;
+}
+.bird-dialog[open] { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px; }
+.bird-dialog::backdrop { background: #30233dba; backdrop-filter: blur(8px); }
+.bird-dialog .dialog-close { z-index: 7; top: 20px; right: 22px; border-color: #cdbbdd; background: #fff9; color: #7a648d; }
+.bird-dialog__heading { flex: none; text-align: center; }
+.bird-dialog__heading .dialog-kicker { color: #a486ad; }
+.bird-dialog__heading h2 { margin: 6px 0 4px; color: #51415e; font-family: Georgia, "Times New Roman", serif; font-size: clamp(29px, 3.2vw, 41px); font-weight: 400; letter-spacing: -.045em; }
+.bird-dialog__heading p { margin: 0; color: #8e7d9a; font-family: Georgia, "Times New Roman", serif; font-size: 13px; font-style: italic; }
+.bird-stage {
+  position: relative;
+  flex: none;
+  width: min(650px, calc(100vw - 32px));
+  height: min(550px, calc(100dvh - 235px));
+  min-height: 280px;
+  overflow: hidden;
+  border: 1px solid #e3d2f1;
+  border-radius: 28px;
+  background: radial-gradient(circle at 48% 27%, #fffafd 0%, #f4eafb 33%, transparent 68%), linear-gradient(145deg, #faf3ff 2%, #e8d8f5 54%, #ddd2f1 100%);
+  box-shadow: 0 22px 72px #7c5b9b26, inset 0 1px #fff;
+}
+.bird-stage::before, .bird-stage::after { content: ""; position: absolute; border-radius: 50%; pointer-events: none; }
+.bird-stage::before { width: 310px; height: 310px; top: -150px; left: -110px; background: radial-gradient(circle, #ffdfba7a, transparent 70%); }
+.bird-stage::after { width: 350px; height: 350px; right: -155px; bottom: -190px; background: radial-gradient(circle, #d6bdec91, transparent 72%); }
+.bird-weave, .bird-reveal { position: absolute; inset: 0; z-index: 1; }
+.bird-weave { transition: opacity .65s ease, transform .65s ease; }
+.bird-weave__drawing { position: absolute; top: 45%; left: 50%; width: min(360px, 72%); height: 75%; overflow: visible; transform: translate(-50%, -50%); filter: drop-shadow(0 8px 17px #9a75b45c); }
+.silk-guide { stroke: #c3add5; stroke-width: 2; stroke-linecap: round; stroke-dasharray: 2 9; opacity: .62; }
+.silk-fiber { fill: none; stroke: var(--fiber-color); stroke-width: var(--fiber-width, 2.5); stroke-linecap: round; opacity: var(--fiber-opacity, .83); stroke-dasharray: 1; stroke-dashoffset: 1; transition: stroke-dashoffset 1.25s cubic-bezier(.24,.72,.16,1) var(--fiber-delay, 0ms); }
+.silk-weave-layer.is-woven .silk-fiber { stroke-dashoffset: 0; }
+.silk-fiber--cross { stroke-width: 1.35; opacity: .74; }
+.silk-fiber--glint { stroke-width: .85; opacity: .9; }
+.silk-weave-layer { filter: drop-shadow(0 1px 1px #6f537d38); }
+.weave-glow { position: absolute; z-index: 4; top: var(--glow-y); left: var(--glow-x); width: 82px; height: 82px; padding: 0; border: 0; border-radius: 50%; background: radial-gradient(circle, #fffefa 0 7%, #fff6d9 11%, #f7d9aa99 27%, #edc9f000 69%); box-shadow: 0 0 18px 4px #fff9eacc, 0 0 45px 16px #fff8e582; cursor: pointer; transform: translate(-50%, -50%); animation: weave-light-breathe 1.7s ease-in-out infinite alternate; transition: top .7s ease, left .7s ease, opacity .4s ease; }
+.weave-glow::before { content: ""; position: absolute; inset: 9px; border: 1.5px solid #fffef4; border-radius: 50%; box-shadow: 0 0 0 6px #fff9ee55, 0 0 24px #fff; animation: weave-light-ring 2s ease-out infinite; }
+.weave-glow__star { position: relative; z-index: 1; color: #fff; font-size: 24px; text-shadow: 0 0 3px #fff, 0 0 12px #efb992, 0 0 26px #d28aca; }
+.weave-glow__hint { position: absolute; top: 74px; left: 50%; padding: 4px 7px; border-radius: 8px; background: #fffaf0dd; color: #8c6b89; font-size: 8px; font-weight: 700; letter-spacing: .12em; white-space: nowrap; transform: translateX(-50%); }
+.weave-glow:focus-visible { outline: 3px solid #9672b3; outline-offset: 6px; }
+.bird-stage[data-thread-step="0"] .weave-glow { --glow-x: 40%; --glow-y: 27%; }
+.bird-stage[data-thread-step="1"] .weave-glow { --glow-x: 62%; --glow-y: 53%; background: radial-gradient(circle, #fff 0 8%, #eddcff 16%, #c9a9f4a8 34%, #dfc3f000 70%); }
+.bird-stage[data-thread-step="2"] .weave-glow { --glow-x: 52%; --glow-y: 76%; background: radial-gradient(circle, #fff 0 8%, #d7c7ff 18%, #a58bd5aa 35%, #d8c3f000 70%); }
+.bird-stage.is-revealed .weave-glow, .weave-glow[hidden] { display: none; }
+.bird-weave__spark { position: absolute; color: #fffaf5; text-shadow: 0 0 12px #d7adf2; pointer-events: none; animation: bird-spark 3s ease-in-out infinite alternate; }
+.bird-weave__spark--one { top: 22%; left: 19%; font-size: 24px; }
+.bird-weave__spark--two { right: 16%; bottom: 26%; font-size: 18px; animation-delay: 1s; }
+.bird-weave__caption { position: absolute; right: 15px; bottom: 7%; left: 15px; margin: 0; color: #9a86a8; font-family: Georgia, "Times New Roman", serif; font-size: 13px; font-style: italic; text-align: center; }
+.bird-reveal { z-index: 2; opacity: 0; pointer-events: none; transform: translateY(12px); transition: opacity .8s ease, transform .8s ease; }
+.bird-stage.is-revealed .bird-weave { opacity: 0; pointer-events: none; transform: translateY(-12px); }
+.bird-stage.is-revealed .bird-reveal { opacity: 1; pointer-events: auto; transform: translateY(0); }
+.bird-turn { position: absolute; top: 2%; left: 50%; width: min(410px, 82%); height: 64%; padding: 0; border: 0; background: transparent; cursor: pointer; perspective: 1100px; transform: translateX(-50%); }
+.bird-turn__inner { position: relative; display: block; width: 100%; height: 100%; transform-style: preserve-3d; transition: transform .8s cubic-bezier(.2,.7,.2,1); }
+.bird-turn.is-turned .bird-turn__inner { transform: rotateY(180deg); }
+.bird-turn__face { position: absolute; inset: 0; display: grid; place-items: center; backface-visibility: hidden; }
+.bird-turn__face--back { transform: rotateY(180deg); }
+.bird-turn__face img { position: absolute; inset: 0; display: block; width: 100%; height: 100%; object-fit: contain; filter: drop-shadow(0 18px 16px #79618b45); }
+.bird-reveal__label { position: absolute; right: 12px; bottom: 13%; left: 12px; text-align: center; }
+.bird-reveal__label span { color: #957ba4; font-size: 9px; font-weight: 700; letter-spacing: .2em; }
+.bird-reveal__label h3 { margin: 5px 0 3px; color: #624d73; font-family: Georgia, "Times New Roman", serif; font-size: clamp(31px, 4.3vw, 43px); font-weight: 400; font-style: italic; letter-spacing: -.04em; }
+.bird-reveal__label p { margin: 0; color: #8d799c; font-family: Georgia, "Times New Roman", serif; font-size: 12px; font-style: italic; }
+.bird-note-link { position: absolute; bottom: 3%; left: 50%; padding: 7px 14px; border: 1px solid #bfa9d5; border-radius: 99px; background: #fff9; color: #6b5482; cursor: pointer; font-size: 11px; transform: translateX(-50%); white-space: nowrap; }
+.bird-note-link span { margin-left: 3px; }
+.bird-note { position: absolute; z-index: 5; inset: 7% 13%; display: flex; flex-direction: column; padding: 28px 30px 22px; border: 1px solid #e9dced; border-radius: 20px; background: linear-gradient(155deg, #fffefa, #f7effb); box-shadow: 0 16px 40px #6a528a3d; animation: bird-note-enter .45s ease both; }
+.bird-note[hidden] { display: none; }
+.bird-note .letter-body { font-size: 14px; line-height: 1.9; }
+.bird-kaomoji { font-family: "Noto Sans Tagalog", "Apple Symbols", sans-serif; white-space: nowrap; }
+.bird-note__scroll-hint { align-self: center; margin: 7px 0 2px; color: #a18bab; font-family: Georgia, "Times New Roman", serif; font-size: 11px; font-style: italic; }
+.bird-note__scroll-hint[hidden] { display: none; }
+.bird-controls { display: flex; flex: none; flex-direction: column; align-items: center; gap: 7px; min-height: 66px; color: #816d91; font-size: 12px; text-align: center; }
+.bird-controls p { min-height: 15px; margin: 0; font-family: Georgia, "Times New Roman", serif; font-style: italic; }
+.bird-controls p[hidden] { display: none; }
+.bird-stage.is-revealed + .bird-controls { min-height: 32px; }
+.bird-count { color: #a28cad; font-family: Georgia, "Times New Roman", serif; font-size: 11px; }
+.bird-count[hidden], .bird-controls button[hidden] { display: none; }
+#bird-replay { padding: 6px 14px; border: 1px solid #c7b2db; border-radius: 99px; background: #fff9; color: #705789; cursor: pointer; font-size: 11px; }
+@keyframes weave-light-breathe { from { box-shadow: 0 0 16px 4px #fff9eaa0, 0 0 36px 12px #fff8e568; } to { box-shadow: 0 0 25px 7px #fff9eaff, 0 0 58px 23px #fff8e5b5; } }
+@keyframes weave-light-ring { from { transform: scale(.76); opacity: .9; } to { transform: scale(1.34); opacity: .12; } }
+
 .pending-dialog { position: relative; width: min(390px, calc(100vw - 28px)); padding: 54px 34px 36px; text-align: center; }
 .pending-dialog__star { color: #c2a4bf; font-size: 29px; }
 .pending-dialog h2 { margin: 13px 0 8px; font-family: Georgia, "Times New Roman", serif; font-size: 30px; font-weight: 400; }
@@ -449,6 +540,8 @@ button.bubble:disabled { cursor: default; }
 @keyframes glint-out { to { opacity: 0; transform: translate(-50%,-50%) scale(1.7); } }
 @keyframes page-enter { from { opacity: 0; transform: scale(.985); } to { opacity: 1; transform: scale(1); } }
 @keyframes dialog-enter { from { opacity: 0; transform: translateY(15px) scale(.97); } to { opacity: 1; transform: translateY(0) scale(1); } }
+@keyframes bird-spark { from { opacity: .35; } to { opacity: .9; } }
+@keyframes bird-note-enter { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: translateY(0); } }
 
 @media (max-width: 700px) {
   .page-shell { padding: 25px 13px 20px; }
@@ -479,6 +572,14 @@ button.bubble:disabled { cursor: default; }
   .book-dialog .dialog-heading h2 { font-size: 28px; }
   .book-dialog .dialog-heading p { margin: 3px 0 0; font-size: 12px; }
   .book-progress { font-size: 11px; }
+  .bird-dialog { padding: 12px; }
+  .bird-dialog[open] { gap: 8px; }
+  .bird-dialog__heading h2 { font-size: 29px; }
+  .bird-dialog__heading p { font-size: 12px; }
+  .bird-stage { width: calc(100vw - 24px); height: min(520px, calc(100dvh - 205px)); border-radius: 22px; }
+  .bird-weave__drawing { width: min(330px, 78%); }
+  .bird-note { right: 6%; left: 6%; padding: 22px 20px 17px; }
+  .bird-controls { gap: 7px; }
 }
 
 @media (max-width: 390px) {
@@ -497,6 +598,14 @@ button.bubble:disabled { cursor: default; }
   .book-stage { width: min(420px, calc(100vw - 30px), 38dvh); aspect-ratio: 1080 / 1819; }
   .book-flip { width: 100%; height: 100%; }
   .book-progress { min-height: 26px; font-size: 10px; }
+  .bird-dialog { padding: 8px; }
+  .bird-dialog[open] { gap: 4px; }
+  .bird-dialog__heading h2 { margin: 2px 0; font-size: 24px; }
+  .bird-dialog__heading p { font-size: 11px; }
+  .bird-stage { height: calc(100dvh - 164px); min-height: 0; }
+  .bird-controls { min-height: 64px; gap: 4px; }
+  .weave-glow { width: 67px; height: 67px; }
+  .weave-glow__hint { top: 60px; }
 }
 
 @media (prefers-reduced-motion: reduce) {

@@ -7,8 +7,8 @@
     <meta name="description" content="Seven days of birthday surprises, made with love for Irene." />
     <meta name="robots" content="noindex, nofollow" />
     <title>For you, Irene — Seven Days of Celebrating You</title>
-    <link rel="stylesheet" href="./styles.css" />
-    <script src="./script.js?v=day2-early" defer></script>
+    <link rel="stylesheet" href="./styles.css?v=day3-letter3" />
+    <script src="./script.js?v=day3-letter3" defer></script>
   </head>
   <body>
     <div class="opening" aria-hidden="true">
@@ -46,13 +46,13 @@
             <span class="day-card__top"><span>DAY 02</span><span class="day-card__mark" aria-hidden="true">✦</span></span>
             <span class="day-card__number">31</span>
             <span class="day-card__month">OCTOBER</span>
-            <span class="day-card__bottom">Little surprise <span aria-hidden="true">↗</span></span>
+            <span class="day-card__bottom">A book for you <span aria-hidden="true">↗</span></span>
           </button>
           <button class="day-card day-card--yellow" data-day="2" type="button" aria-label="Day 3, November 1">
             <span class="day-card__top"><span>DAY 03</span><span class="day-card__mark" aria-hidden="true">✦</span></span>
             <span class="day-card__number">01</span>
             <span class="day-card__month">NOVEMBER</span>
-            <span class="day-card__bottom">Little surprise <span aria-hidden="true">↗</span></span>
+            <span class="day-card__bottom">A bird for you <span aria-hidden="true">↗</span></span>
           </button>
           <button class="day-card day-card--green" data-day="3" type="button" aria-label="Day 4, November 2">
             <span class="day-card__top"><span>DAY 04</span><span class="day-card__mark" aria-hidden="true">✦</span></span>
@@ -152,6 +152,63 @@
         <p id="book-instruction" role="status" aria-live="polite">Follow the light. Pop the bubbles to make a heart ♡</p>
         <span id="bubble-count">0 / 14</span>
         <button id="bubble-replay" type="button" hidden>Pop them again ↺</button>
+      </div>
+    </dialog>
+
+    <dialog id="bird-dialog" class="bird-dialog" aria-labelledby="bird-title">
+      <button class="dialog-close" type="button" aria-label="Close gift">×</button>
+      <div class="bird-dialog__heading">
+        <span class="dialog-kicker">DAY 03 · NOVEMBER 1</span>
+        <h2 id="bird-title">A little bird for you</h2>
+      </div>
+      <div id="bird-stage" class="bird-stage" data-thread-step="0">
+        <div id="bird-weave" class="bird-weave">
+          <span class="bird-weave__spark bird-weave__spark--one" aria-hidden="true">✦</span>
+          <span class="bird-weave__spark bird-weave__spark--two" aria-hidden="true">✧</span>
+          <svg class="bird-weave__drawing" viewBox="0 0 400 420" fill="none" aria-hidden="true">
+            <defs>
+              <clipPath id="silk-head-shape"><path d="M 103 187 C 93 112 130 66 200 66 C 270 66 307 112 297 187 Q 285 226 200 230 Q 115 226 103 187 Z" /></clipPath>
+              <clipPath id="silk-body-shape"><path d="M 103 172 C 67 191 66 261 107 296 C 130 321 165 336 200 336 C 235 336 270 321 293 296 C 334 261 333 191 297 172 Q 270 218 200 224 Q 130 218 103 172 Z" /></clipPath>
+              <clipPath id="silk-tail-shape"><path d="M 164 320 Q 180 340 200 335 Q 220 340 236 320 C 231 359 218 391 200 406 C 182 391 169 359 164 320 Z" /></clipPath>
+            </defs>
+            <path class="silk-guide" d="M 103 184 C 95 106 130 68 200 66 C 270 68 305 106 297 184 C 332 204 331 263 293 296 C 270 320 237 335 200 335 C 163 335 130 320 107 296 C 69 263 68 204 103 184 Z M 164 327 C 170 360 186 393 200 406 C 214 393 230 360 236 327" />
+            <g id="silk-weave-head" class="silk-weave-layer silk-weave-layer--gold" clip-path="url(#silk-head-shape)"></g>
+            <g id="silk-weave-body" class="silk-weave-layer silk-weave-layer--lilac" clip-path="url(#silk-body-shape)"></g>
+            <g id="silk-weave-tail" class="silk-weave-layer silk-weave-layer--violet" clip-path="url(#silk-tail-shape)"></g>
+          </svg>
+          <p class="bird-weave__caption">Silk by silk, a little bird takes shape.</p>
+        </div>
+        <button id="weave-glow" class="weave-glow" type="button" aria-label="Tap the glowing light to weave golden silk"><span class="weave-glow__star" aria-hidden="true">✦</span><span class="weave-glow__hint" aria-hidden="true">TAP HERE</span></button>
+        <div id="bird-reveal" class="bird-reveal" aria-hidden="true">
+          <button id="bird-turn" class="bird-turn" type="button" aria-label="Turn Sophiae around to see her tail" tabindex="-1">
+            <span class="bird-turn__inner">
+              <span class="bird-turn__face bird-turn__face--front"><img src="./assets/sophiae-front.webp" alt="Sophiae, a handmade silk velvet bird with a peach head and lavender cheeks" /></span>
+              <span class="bird-turn__face bird-turn__face--back"><img src="./assets/sophiae-back.webp" alt="Sophiae from behind, showing her violet wings and long tail" /></span>
+            </span>
+          </button>
+          <div class="bird-reveal__label">
+            <span>A SILK VELVET BIRD, MADE JUST FOR YOU</span>
+            <h3>Sophiae</h3>
+            <p id="bird-turn-hint">Tap Sophiae to see her other side ↻</p>
+          </div>
+          <button id="bird-note-open" class="bird-note-link" type="button" tabindex="-1">A note for Irene <span aria-hidden="true">↗</span></button>
+        </div>
+        <div id="bird-note" class="bird-note" hidden>
+          <span class="letter-label">DAY THREE · A NOTE FOR IRENE</span>
+          <span class="letter-title">To Irene,</span>
+          <div class="letter-body" tabindex="-1">
+            <p>今天的礼物真的特别特别萌啊！一直给宝宝塑了一只Sophiae，于是就趁这个机会找人定制了一只生丝绒花小鸟Sophiae！捧着这只小鸟感觉宝宝就停驻在我的手心上 <span class="bird-kaomoji">ᜊ(◍•͈⌔•͈◍)ᜊ</span></p>
+            <p>有时候我觉得缘分就是如此神奇吧，我越了解 Sophiae 越觉得她很像你。她看起来小小一只需要被保护，但是它筑巢在2000-5000海拔的高山上，住在云层间，而且特别擅长捕猎虫子；她虽然生活在寒冷的高原上，却没有很多寒地鸟类赖以生存的保暖血管，全靠它厚厚的羽毛和隐秘的巢来保护自己。在我看来Sophiae 有很特别的 resilience，宝宝也是——Irene 看起来瘦瘦的一只，但是用很强的精神力保护着自己，她把巢筑在不容易被发现的地方，需要人慢慢地用心地去发现。</p>
+            <p>宝宝，其实我很想变成一只小鸟飞到你身边，静静地停在你的窗前，但是首尔的冬天就要来了，如果有只77一直停在你的窗前，你邀请她进入你的小巢好吗 ^ ^</p>
+          </div>
+          <span id="bird-note-scroll-hint" class="bird-note__scroll-hint" hidden>Scroll to continue ↓</span>
+          <button id="bird-note-close" class="letter-return" type="button">Back to Sophiae ↻</button>
+        </div>
+      </div>
+      <div class="bird-controls">
+        <p id="bird-instruction" role="status" aria-live="polite">Tap the glowing light inside the picture.</p>
+        <span id="bird-count">0 / 3 silks woven</span>
+        <button id="bird-replay" type="button" hidden>Weave again ↺</button>
       </div>
     </dialog>
 

@@ -1,0 +1,302 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <title>The Sourcing Decision | China Apparel</title>
+  <style>
+    :root {
+      --ink:#281a2d; --muted:#695d6c; --line:#e4dfe9; --paper:#fffdfa;
+      --lavender:#f2edf6; --purple:#5b43a4; --purple-soft:#ece7f7;
+      --blue:#337cac; --blue-soft:#e8f3fa; --coral:#dc7766; --coral-soft:#fff0ed;
+      --gold:#bd8c31; --gold-soft:#fbf2db; --green:#238b78; --green-soft:#e7f5f1;
+      --shadow:0 20px 55px rgba(38,24,50,.10);
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{margin:0;background:#ede8f1;color:var(--ink);font-family:Inter,Arial,Helvetica,sans-serif}
+    button{font:inherit}
+    a{color:var(--purple)}
+    .shell{min-height:100vh;width:100%;margin:auto;background:var(--paper);box-shadow:var(--shadow)}
+    .eyebrow{font-size:.76rem;font-weight:800;letter-spacing:.22em;text-transform:uppercase;color:#8c738e}
+    .topbar{display:flex;justify-content:space-between;align-items:center;gap:18px;padding:25px clamp(22px,4vw,64px) 0}
+    .nav{display:flex;gap:7px;padding:5px;border-radius:999px;background:#eee9f2}
+    .nav a{border-radius:999px;padding:10px 15px;text-decoration:none;font-size:.86rem;font-weight:750;color:#6f6571;white-space:nowrap}
+    .nav a[aria-current="page"]{background:#fff;color:var(--ink);box-shadow:0 4px 13px #38283a18}
+    main{padding:20px clamp(22px,4vw,64px) 34px}
+    .view[hidden]{display:none!important}
+    h1,h2,h3,p{margin-top:0}
+    h1{font-family:Impact,"Arial Narrow",Arial,sans-serif;font-weight:900;letter-spacing:-.025em;line-height:.92;font-size:clamp(3.7rem,7.2vw,7.6rem);margin:10px 0 16px}
+    h2{font-family:Impact,"Arial Narrow",Arial,sans-serif;font-size:clamp(2.4rem,4vw,4.5rem);letter-spacing:-.014em;line-height:.96;margin:6px 0 14px}
+    h3{font-size:1.09rem;margin-bottom:11px}
+    .intro{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(270px,.7fr);align-items:end;gap:30px;padding-bottom:25px;border-bottom:1px solid var(--line)}
+    .intro p{font-size:clamp(1rem,1.5vw,1.27rem);line-height:1.52;color:#554c59;max-width:850px;margin:0}
+    .brief{padding:19px 22px;background:var(--lavender);border-radius:19px;border:1px solid #e9e1ee}
+    .brief .big{font-weight:850;font-size:1.18rem;margin:5px 0}
+    .brief .small{color:#6d6070;line-height:1.35;font-size:.88rem;margin:0}
+    .steps{display:grid;grid-template-columns:1.02fr .96fr .98fr;gap:15px;margin-top:24px}
+    .step{background:#fff;border:1px solid #e6e1e9;border-radius:20px;padding:20px;box-shadow:0 9px 20px rgba(41,27,51,.035);min-width:0}
+    .step-head{display:flex;align-items:center;gap:10px;margin-bottom:10px}
+    .step-num{width:28px;height:28px;border-radius:50%;display:grid;place-items:center;background:var(--ink);color:white;font-size:.82rem;font-weight:850;flex:none}
+    .step h3{margin:0;font-size:1.13rem}
+    .step-help{font-size:.86rem;color:#756c79;line-height:1.4;min-height:2.4em;margin:0 0 12px}
+    .choices{display:grid;gap:9px}
+    .choice{display:block;width:100%;text-align:left;appearance:none;border:1.5px solid #e6e0e9;background:#fdfbfd;color:var(--ink);border-radius:13px;padding:12px 13px;cursor:pointer;min-height:56px;transition:.15s}
+    .choice:hover{border-color:#9b83b8;transform:translateY(-1px)}
+    .choice[aria-pressed="true"]{border-color:var(--purple);background:var(--purple-soft);box-shadow:inset 4px 0 var(--purple)}
+    .choice:focus-visible,.nav a:focus-visible,.button:focus-visible{outline:3px solid #a67ee3;outline-offset:3px}
+    .choice strong{display:block;font-size:.95rem;line-height:1.22}
+    .choice span{display:block;margin-top:3px;color:#6c6170;font-size:.77rem;line-height:1.3}
+    .choice:disabled{opacity:.55;cursor:not-allowed}
+    .result-wrap{margin-top:22px;scroll-margin-top:18px}
+    .empty{display:flex;align-items:center;justify-content:space-between;gap:24px;padding:21px 25px;border-radius:19px;background:#f1edf4;border:1px dashed #d4c9dc;color:#665a6a}
+    .empty strong{font-size:1.1rem;color:var(--ink)}
+    .empty p{margin:5px 0 0;font-size:.9rem}
+    .empty-arrow{font-family:Impact,Arial,sans-serif;font-size:3rem;color:#b8a7c2}
+    .result{background:#fff;border:1px solid #ded6e4;border-radius:22px;overflow:hidden;box-shadow:0 14px 30px #32263b10}
+    .result-top{display:grid;grid-template-columns:1.08fr .92fr;gap:23px;padding:25px 29px;background:linear-gradient(115deg,#f5eff9,#eef6fa)}
+    .result-label{font-size:.73rem;font-weight:900;letter-spacing:.18em;text-transform:uppercase;color:#85718d}
+    .result-title{font-family:Impact,"Arial Narrow",Arial,sans-serif;font-size:clamp(2.5rem,4.7vw,5rem);line-height:.98;margin:7px 0 10px}
+    .result-place{font-size:1.06rem;font-weight:750;color:#5d5360;margin-bottom:0}
+    .result-brief{align-self:center;border-left:4px solid var(--purple);padding-left:18px;font-size:1rem;line-height:1.48;color:#4a4250}
+    .result-brief p{margin:0}
+    .result-body{display:grid;grid-template-columns:1fr 1fr;gap:24px;padding:22px 29px}
+    .bullets{margin:0;padding-left:19px;line-height:1.45;color:#514755;font-size:.92rem}
+    .bullets li+li{margin-top:7px}
+    .tradeoff{font-size:.88rem;line-height:1.42;color:#5d5260;background:#faf6f1;padding:12px 14px;border-radius:12px;border-left:3px solid var(--gold);margin:14px 0 0}
+    .factor-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:7px}
+    .factor{border-radius:10px;padding:8px 9px;background:#f5f2f7;border:1px solid #eee8f1}
+    .factor span{display:block;font-size:.68rem;color:#766b7a;line-height:1.25}
+    .factor strong{display:block;font-size:1.12rem;margin-top:3px}
+    .factor em{font-style:normal;font-weight:400;font-size:.66rem;color:#817987}
+    .results-detail{padding:0 29px 22px}
+    .compare-title{font-size:.76rem;letter-spacing:.13em;text-transform:uppercase;color:#86748a;font-weight:850;margin-bottom:9px}
+    .comparison{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+    .supplier-mini{padding:11px 12px;border:1px solid #e5dfe8;border-radius:12px;background:#fff}
+    .supplier-mini.winner{border:2px solid var(--purple);background:#f7f3fb}
+    .supplier-mini .name{display:block;font-size:.83rem;font-weight:800;line-height:1.25}
+    .supplier-mini .score{display:block;font-size:.76rem;color:#736b77;margin-top:4px}
+    .notice{font-size:.78rem;color:#77707b;line-height:1.45;margin:15px 0 0}
+    .matrix-head{display:flex;justify-content:space-between;align-items:end;gap:25px;padding-bottom:20px;border-bottom:1px solid var(--line)}
+    .matrix-head p{font-size:1rem;line-height:1.45;color:#5d5360;max-width:700px;margin:0}
+    .matrix{width:100%;border-collapse:separate;border-spacing:0 6px;margin-top:15px;table-layout:fixed}
+    .matrix th{font-size:.78rem;text-align:left;color:#6e6272;padding:7px 10px;letter-spacing:.09em;text-transform:uppercase}
+    .matrix th:first-child{width:24%}
+    .matrix td{background:#f8f6fa;padding:10px 12px;vertical-align:middle;line-height:1.22;border-top:1px solid #ebe6ee;border-bottom:1px solid #ebe6ee}
+    .matrix td:first-child{border-left:1px solid #ebe6ee;border-radius:12px 0 0 12px}
+    .matrix td:last-child{border-right:1px solid #ebe6ee;border-radius:0 12px 12px 0}
+    .matrix .prod{font-weight:800;font-size:.95rem}
+    .matrix .material{font-weight:400;font-size:.78rem;color:#766b79;margin-top:2px}
+    .winner-pill{display:inline-block;border-radius:999px;padding:5px 8px;font-size:.76rem;font-weight:850;white-space:nowrap}
+    .winner-pill.coast{background:var(--purple-soft);color:var(--purple)}
+    .winner-pill.inland{background:var(--coral-soft);color:#a75549}
+    .winner-pill.vietnam{background:var(--blue-soft);color:#215c84}
+    .winner-pill.bangladesh{background:var(--gold-soft);color:#8b6218}
+    .why{display:block;font-size:.75rem;color:#615765;margin-top:3px}
+    .matrix-bottom{display:grid;grid-template-columns:1.05fr .95fr;gap:18px;margin-top:16px}
+    .explain-box{border:1px solid var(--line);border-radius:16px;padding:15px 18px;background:#fff}
+    .explain-box h3{font-size:.91rem;margin:0 0 8px}
+    .explain-box p,.explain-box li{font-size:.79rem;line-height:1.35;color:#625866;margin:0}
+    .explain-box ul{margin:0;padding-left:18px}
+    .explain-box li+li{margin-top:3px}
+    .weight-row{display:grid;grid-template-columns:repeat(6,1fr);gap:4px;margin-top:8px}
+    .weight-row div{font-size:.66rem;border-radius:7px;padding:5px 3px;text-align:center;background:#f3eff6;color:#604f6c}
+    .weight-row strong{display:block;font-size:.77rem;color:var(--ink)}
+    footer{padding:0 clamp(22px,4vw,64px) 24px;color:#817987;font-size:.74rem;line-height:1.45}
+    footer p{margin:0}
+    @media(max-width:1050px){
+      .steps{grid-template-columns:1fr 1fr}.step:last-child{grid-column:1/-1}
+      .matrix-head{align-items:start}.matrix-bottom{grid-template-columns:1fr}
+    }
+    @media(max-width:700px){
+      .topbar{align-items:start;flex-direction:column;padding-top:18px}
+      .nav{width:100%}.nav a{flex:1;text-align:center;padding:9px 8px}
+      main{padding-top:21px}.intro,.steps,.result-top,.result-body{grid-template-columns:1fr}
+      h1{font-size:clamp(3.8rem,14vw,5.8rem)}.brief{padding:14px 17px}
+      .step-help{min-height:0}.step:last-child{grid-column:auto}
+      .result-top{gap:12px;padding:22px}.result-body{padding:20px 22px}
+      .result-brief{font-size:.92rem}.results-detail{padding:0 22px 20px}
+      .comparison{grid-template-columns:1fr 1fr}
+      .matrix-head{display:block}.matrix{font-size:.75rem}.matrix th:first-child{width:29%}
+      .matrix td{padding:8px 6px}.matrix th{padding:5px 6px;font-size:.58rem}
+      .matrix .prod{font-size:.75rem}.matrix .material,.winner-pill,.why{font-size:.62rem}
+      .winner-pill{white-space:normal}.weight-row{grid-template-columns:repeat(3,1fr)}
+    }
+    @media print{
+      body{background:white}.shell{box-shadow:none;max-width:none}.topbar,.view#game,footer{display:none!important}
+      .view#matrix{display:block!important}.matrix td{padding:7px 8px}.matrix-bottom{margin-top:9px}
+      @page{size:16in 9in;margin:.25in}
+    }
+  </style>
+</head>
+<body>
+<div class="shell">
+  <header class="topbar">
+    <div class="eyebrow">China apparel atlas · the final decision</div>
+    <nav class="nav" aria-label="Views">
+      <a href="#game" id="nav-game">Play the game</a>
+      <a href="#matrix" id="nav-matrix">All 24 outcomes</a>
+    </nav>
+  </header>
+  <main>
+    <section class="view" id="game" aria-labelledby="game-heading">
+      <div class="intro">
+        <div>
+          <div class="eyebrow">Audience game · choose three things</div>
+          <h1 id="game-heading">Where should<br>we make it?</h1>
+          <p>Act as the sourcing manager for a US-bound apparel order. Choose a garment, its fabric, and your sourcing priority. Your supplier recommendation will change with your brief.</p>
+        </div>
+        <aside class="brief">
+          <div class="eyebrow">The decision rule</div>
+          <p class="big">The cheapest factory quote may not be the best sourcing choice.</p>
+          <p class="small">Compare price, tariff exposure, transport, lead time, inventory risk and supplier documentation.</p>
+        </aside>
+      </div>
+      <div class="steps">
+        <section class="step" aria-labelledby="product-heading">
+          <div class="step-head"><span class="step-num">1</span><h3 id="product-heading">Choose the garment</h3></div>
+          <p class="step-help">What are you making?</p>
+          <div class="choices" id="product-options"></div>
+        </section>
+        <section class="step" aria-labelledby="fabric-heading">
+          <div class="step-head"><span class="step-num">2</span><h3 id="fabric-heading">Choose the fabric</h3></div>
+          <p class="step-help">Each product has two realistic material options.</p>
+          <div class="choices" id="fabric-options"></div>
+        </section>
+        <section class="step" aria-labelledby="strategy-heading">
+          <div class="step-head"><span class="step-num">3</span><h3 id="strategy-heading">Choose your strategy</h3></div>
+          <p class="step-help">This changes how strongly each sourcing factor counts.</p>
+          <div class="choices" id="strategy-options"></div>
+        </section>
+      </div>
+      <section class="result-wrap" id="result-wrap" aria-live="polite">
+        <div class="empty" id="empty"><div><strong>Make all three choices to reveal your supplier.</strong><p>You will see the reason, the trade-off and the full comparison.</p></div><span class="empty-arrow" aria-hidden="true">↘</span></div>
+        <div class="result" id="result" hidden>
+          <div class="result-top"><div><div class="result-label">Recommended supplier · in this simulation</div><div class="result-title" id="result-name"></div><p class="result-place" id="result-place"></p></div><div class="result-brief"><p id="result-summary"></p></div></div>
+          <div class="result-body"><div><h3>Why this supplier?</h3><ul class="bullets" id="result-reasons"></ul><p class="tradeoff" id="result-tradeoff"></p></div><div><h3>Your six-factor profile</h3><div class="factor-grid" id="result-factors"></div><p class="notice">Scores are illustrative supplier-offer ratings from 1 (better) to 5 (worse). They are not measured country averages or actual tariff rates.</p></div></div>
+          <div class="results-detail"><div class="compare-title">All eligible supplier offers · weighted score, lower is better</div><div class="comparison" id="comparison"></div><p class="notice">A supplier missing from the comparison did not meet this simulated product specification. The model uses the same six factors for every eligible offer.</p></div>
+        </div>
+      </section>
+    </section>
+    <section class="view" id="matrix" aria-labelledby="matrix-heading" hidden>
+      <div class="matrix-head">
+        <div><div class="eyebrow">Presenter reveal · 4 garments × 2 fabrics × 3 strategies</div><h2 id="matrix-heading">There is no single<br>best country.</h2></div>
+        <p>Each cell is the lowest weighted score for one simulated US-bound sourcing brief. Read across a row: changing only the sourcing priority can change the recommended supplier.</p>
+      </div>
+      <table class="matrix" aria-label="All sourcing game outcomes">
+        <thead><tr><th>Garment + material</th><th>Cost-first</th><th>Fast response</th><th>Risk-balanced</th></tr></thead>
+        <tbody id="matrix-body"></tbody>
+      </table>
+      <div class="matrix-bottom">
+        <div class="explain-box">
+          <h3>Why the answer changes</h3>
+          <ul>
+            <li>Stable, large-volume basics make a low factory quote more valuable.</li>
+            <li>Rapid changes raise the cost of long lead times and unsold or missing stock.</li>
+            <li>Specialised fabric and production clusters can outweigh cheaper sewing.</li>
+            <li>Compliance depends on this supplier's evidence and material traceability, not a country label.</li>
+          </ul>
+        </div>
+        <div class="explain-box">
+          <h3>What the game compares</h3>
+          <p>Factory price · tariff exposure · transport · lead time · inventory risk · compliance risk. Lead time is quoted delivery speed; inventory risk reflects demand uncertainty and repeat-order flexibility. Lower weighted score wins.</p>
+          <div class="weight-row"><div>Factory<strong>Price</strong></div><div>Import<strong>Tariff</strong></div><div>Outbound<strong>Transport</strong></div><div>Delivery<strong>Lead time</strong></div><div>Stock<strong>Inventory</strong></div><div>Evidence<strong>Compliance</strong></div></div>
+          <p style="margin-top:9px"><strong>Weights:</strong> Cost-first 40/20/15/10/8/7%; Fast response 10/8/10/35/27/10%; Risk-balanced 20/15/10/20/15/20% (factor order above). Illustrative offers, not actual 2026 quotes or tariff rates.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+  <footer><p>Teaching simulation informed by <a href="https://www.usitc.gov/publications/332/pub5543_0.pdf" target="_blank" rel="noopener">USITC apparel competitiveness research</a> and <a href="https://betterwork.org/reports-and-publications/advancing-decent-work-in-garment-supply-chains-in-asia-and-the-pacific-the-ilo-ifc-better-work-approach-and-recent-sectoral-compliance-trends/" target="_blank" rel="noopener">ILO–IFC Better Work</a>. It compares fictional supplier offers; it does not rank countries or verify a real company. China inland refers to a hypothetical supplier near the Hubei apparel cluster discussed in this presentation.</p></footer>
+</div>
+<script>
+(() => {
+  const factors = ["Factory price", "Tariff exposure", "Transport", "Lead time", "Inventory risk", "Compliance risk"];
+  const suppliers = {
+    coast: {name:"China · coastal cluster", short:"China coast", place:"An illustrative supplier in an established coastal apparel cluster", css:"coast", note:"Nearby fabric markets and specialised factories support rapid development and replenishment."},
+    inland: {name:"China · inland Hubei", short:"China inland", place:"An illustrative supplier near the Xiantao–Tianmen apparel cluster", css:"inland", note:"For women's trousers, local production specialisation supports a strong simulated repeat-order offer."},
+    vietnam: {name:"Vietnam", short:"Vietnam", place:"An illustrative export garment supplier", css:"vietnam", note:"Its simulated quote balances manufacturing cost and delivery; fabric sourcing still matters."},
+    bangladesh: {name:"Bangladesh", short:"Bangladesh", place:"An illustrative high-volume basic-garment supplier", css:"bangladesh", note:"Its low simulated factory quote favours stable bulk orders when the buyer can plan ahead."}
+  };
+  const products = [
+    {id:"tee", title:"Basic T-shirt", detail:"High-volume, stable demand", fabrics:[{id:"standard",title:"Standard cotton jersey",detail:"Common knit fabric"},{id:"traceable",title:"Traceable cotton jersey",detail:"Documentation required"}]},
+    {id:"trousers", title:"Women's casual trousers", detail:"Repeat orders may matter", fabrics:[{id:"standard",title:"Standard woven fabric",detail:"Established trouser input"},{id:"stretch",title:"Stretch woven fabric",detail:"More specialised input"}]},
+    {id:"jeans", title:"Denim jeans", detail:"Trend-sensitive styles", fabrics:[{id:"standard",title:"Standard denim",detail:"Conventional fabric"},{id:"traceable",title:"Traceable denim",detail:"Stronger origin evidence"}]},
+    {id:"jacket", title:"Technical outdoor jacket", detail:"Higher material complexity", fabrics:[{id:"standard",title:"Standard performance shell",detail:"Functional outer fabric"},{id:"premium",title:"Premium laminated shell",detail:"Specialised construction"}]}
+  ];
+  const strategies = [
+    {id:"cost",title:"Cost-first",detail:"Factory price 40% · tariff 20%",weights:[.40,.20,.15,.10,.08,.07]},
+    {id:"fast",title:"Fast response",detail:"Lead time 35% · inventory 27%",weights:[.10,.08,.10,.35,.27,.10]},
+    {id:"balanced",title:"Risk-balanced",detail:"No single factor above 20%",weights:[.20,.15,.10,.20,.15,.20]}
+  ];
+  // Fictional offer ratings on a 1–5 scale. They are scenario assumptions, not country statistics.
+  // Order: factory price, tariff exposure, transport, lead time, inventory risk, compliance risk.
+  const offers = {
+    "tee-standard":{coast:[4.4,4,2,1.5,1.2,1.5],inland:[3.8,4,2.4,2,1.5,1.8],vietnam:[2.8,2,2.4,2.7,2,1.6],bangladesh:[1.3,2,3.2,3.5,2.4,2.1]},
+    "tee-traceable":{coast:[4.6,4,2,1.7,1.3,1],inland:[4,4,2.4,2.3,1.7,1.3],vietnam:[3.1,2,2.6,3.3,2.4,2],bangladesh:[1.8,2,3.4,4.1,3.2,2.5]},
+    "trousers-standard":{coast:[4.2,4,2,1.8,1.7,1.5],inland:[3,4,2.5,1.2,1.1,1.5],vietnam:[2.6,2,2.6,2.8,2.7,1.7],bangladesh:[1.4,2,3.2,4,3.8,2]},
+    "trousers-stretch":{coast:[4.4,4,2,1.5,1.3,1],inland:[3.3,4,2.5,1.8,1.7,2.1],vietnam:[3,2,2.7,3,3,2],bangladesh:[2.7,2,3.3,5,4.5,3.3]},
+    "jeans-standard":{coast:[3.7,4,2,1,1.2,1.5],inland:[4.2,4,2.6,2.7,2.8,2.2],vietnam:[2.8,2,2.4,2.8,2.7,1.8],bangladesh:[1.4,2,3.2,4.2,4,2.2]},
+    "jeans-traceable":{coast:[4.1,4,2,1.4,1.4,1.1],inland:[4.6,4,2.6,3,3,2.4],vietnam:[3.2,2,2.6,3.3,3,2.1],bangladesh:[2.6,2,3.4,4.7,4.5,3]},
+    "jacket-standard":{coast:[3.4,4,2,1.3,1.4,1.2],inland:[4.5,4,2.7,3.4,3.2,3.2],vietnam:[2.7,2,2.8,3.1,2.8,2],bangladesh:[3.8,2,3.8,5,5,3.5]},
+    "jacket-premium":{coast:[4,4,2.1,1.8,1.7,1.1],vietnam:[3,2,3,3.9,3.6,2.5]}
+  };
+  const state = {product:null, fabric:null, strategy:null};
+  const $ = id => document.getElementById(id);
+  const offerKey = (product,fabric) => `${product}-${fabric}`;
+  const score = (ratings,strategy) => ratings.reduce((sum,value,i) => sum + value*strategy.weights[i],0);
+  const ranked = (product,fabric,strategy) => Object.entries(offers[offerKey(product,fabric)]).map(([id,ratings]) => ({id,ratings,score:score(ratings,strategy)})).sort((a,b) => a.score-b.score);
+  const selectedProduct = () => products.find(p => p.id===state.product);
+  const selectedFabric = () => selectedProduct()?.fabrics.find(f => f.id===state.fabric);
+  const selectedStrategy = () => strategies.find(s => s.id===state.strategy);
+  function makeButton(title,detail,selected,onClick){
+    const b=document.createElement("button");b.type="button";b.className="choice";b.setAttribute("aria-pressed",String(selected));
+    const s=document.createElement("strong");s.textContent=title;const d=document.createElement("span");d.textContent=detail;b.append(s,d);b.addEventListener("click",onClick);return b;
+  }
+  function renderChoices(){
+    $("product-options").replaceChildren(...products.map(p=>makeButton(p.title,p.detail,state.product===p.id,()=>{state.product=p.id;state.fabric=null;renderChoices();renderResult()})));
+    const fabricButtons=selectedProduct()?.fabrics.map(f=>makeButton(f.title,f.detail,state.fabric===f.id,()=>{state.fabric=f.id;renderChoices();renderResult()}))||[];
+    $("fabric-options").replaceChildren(...fabricButtons);
+    if(!fabricButtons.length){const t=document.createElement("p");t.className="notice";t.textContent="Choose a garment first.";$("fabric-options").append(t)}
+    $("strategy-options").replaceChildren(...strategies.map(s=>makeButton(s.title,s.detail,state.strategy===s.id,()=>{state.strategy=s.id;renderChoices();renderResult()})));
+  }
+  function explain(winner,runner,strategy){
+    const advantages=factors.map((name,i)=>({name,gain:(runner.ratings[i]-winner.ratings[i])*strategy.weights[i],raw:runner.ratings[i]-winner.ratings[i]})).filter(x=>x.gain>.001).sort((a,b)=>b.gain-a.gain);
+    const disadvantages=factors.map((name,i)=>({name,loss:(winner.ratings[i]-runner.ratings[i])*strategy.weights[i]})).filter(x=>x.loss>.001).sort((a,b)=>b.loss-a.loss);
+    const reasonText={"Factory price":"a lower simulated factory quote","Tariff exposure":"lower assumed tariff exposure on this US-bound order","Transport":"lower simulated transport burden","Lead time":"a shorter quoted lead time","Inventory risk":"less expected stockout or unsold-stock exposure","Compliance risk":"stronger documentation in this particular supplier offer"};
+    const items=advantages.slice(0,2).map(x=>`Compared with the runner-up, it benefits from ${reasonText[x.name]}.`);
+    if(winner.id==="inland"&&state.product==="trousers")items.push("This hypothetical Hubei offer draws on the region's women's-trouser specialisation; it does not claim the three-city alliance itself fulfills this order.");
+    else items.push(suppliers[winner.id].note);
+    const tradeoff=disadvantages.length?`Trade-off: it scores worse on ${disadvantages[0].name.toLowerCase()} than the runner-up. The chosen priority makes its advantages more valuable.`:"This offer also scores no worse on the remaining factors than the runner-up.";
+    return {items,tradeoff,top:advantages[0]?.name||"overall balance"};
+  }
+  function renderResult(){
+    const ready=!!(state.product&&state.fabric&&state.strategy);$("empty").hidden=ready;$("result").hidden=!ready;if(!ready)return;
+    const strategy=selectedStrategy(),results=ranked(state.product,state.fabric,strategy),winner=results[0],runner=results[1],supplier=suppliers[winner.id],why=explain(winner,runner,strategy);
+    $("result-name").textContent=supplier.name;$("result-place").textContent=supplier.place;
+    $("result-summary").textContent=`For ${selectedProduct().title.toLowerCase()} in ${selectedFabric().title.toLowerCase()}, your ${strategy.title.toLowerCase()} priority gives this offer the lowest six-factor score (${winner.score.toFixed(1)} / 5). ${supplier.note}`;
+    $("result-reasons").replaceChildren(...why.items.map(t=>{const li=document.createElement("li");li.textContent=t;return li}));
+    $("result-tradeoff").textContent=why.tradeoff;
+    $("result-factors").replaceChildren(...winner.ratings.map((v,i)=>{const d=document.createElement("div");d.className="factor";const s=document.createElement("span");s.textContent=factors[i]+" · "+Math.round(strategy.weights[i]*100)+"% weight";const b=document.createElement("strong");b.textContent=v.toFixed(1);const e=document.createElement("em");e.textContent=" / 5";b.append(e);d.append(s,b);return d}));
+    $("comparison").replaceChildren(...results.map((r,i)=>{const d=document.createElement("div");d.className="supplier-mini"+(i===0?" winner":"");const n=document.createElement("span");n.className="name";n.textContent=suppliers[r.id].short+(i===0?" · recommended":"");const s=document.createElement("span");s.className="score";s.textContent=r.score.toFixed(1)+" / 5";d.append(n,s);return d}));
+    if(window.matchMedia("(max-width:700px)").matches)$("result-wrap").scrollIntoView({behavior:"smooth",block:"start"});
+  }
+  function renderMatrix(){
+    const rows=[];
+    for(const p of products)for(const f of p.fabrics){
+      const tr=document.createElement("tr");const label=document.createElement("td");const strong=document.createElement("div");strong.className="prod";strong.textContent=p.title;const material=document.createElement("div");material.className="material";material.textContent=f.title;label.append(strong,material);tr.append(label);
+      for(const s of strategies){const r=ranked(p.id,f.id,s);const supplier=suppliers[r[0].id];const why=explainForMatrix(r[0],r[1],s);const td=document.createElement("td");const pill=document.createElement("span");pill.className="winner-pill "+supplier.css;pill.textContent=supplier.short;const detail=document.createElement("span");detail.className="why";detail.textContent=why;td.append(pill,detail);tr.append(td)}rows.push(tr)
+    }
+    $("matrix-body").replaceChildren(...rows);
+  }
+  function explainForMatrix(winner,runner,strategy){
+    const gains=factors.map((name,i)=>({name,gain:(runner.ratings[i]-winner.ratings[i])*strategy.weights[i]})).filter(x=>x.gain>.001).sort((a,b)=>b.gain-a.gain);
+    const labels={"Factory price":"lower quote","Tariff exposure":"duty exposure","Transport":"freight","Lead time":"shorter lead","Inventory risk":"stock flexibility","Compliance risk":"documentation"};
+    return gains.slice(0,2).map(x=>labels[x.name]).join(" · ") || "overall balance";
+  }
+  function route(){const matrix=location.hash==="#matrix";$("game").hidden=matrix;$("matrix").hidden=!matrix;$("nav-game").setAttribute("aria-current",matrix?"false":"page");$("nav-matrix").setAttribute("aria-current",matrix?"page":"false");window.scrollTo(0,0)}
+  renderChoices();renderResult();renderMatrix();route();window.addEventListener("hashchange",route);
+})();
+</script>
+</body>
+</html>

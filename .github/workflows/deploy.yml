@@ -32,10 +32,15 @@ jobs:
       - name: Build
         run: npm run build
 
+      - name: Stage public pages without the birthday gift
+        run: |
+          mkdir -p pages-dist
+          rsync -a --exclude='/foru_irene_77lovesu/' dist/ pages-dist/
+
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: dist
+          path: pages-dist
 
   deploy:
     needs: build
